@@ -107,17 +107,14 @@ h1,h2{font-family:var(--thd)}
 .hwrap{position:relative;height:100%;max-width:1320px;margin-inline:auto;padding:96px var(--gr) 60px var(--gl);display:flex;align-items:center;pointer-events:none}
 .hl{display:grid;gap:clamp(14px,2.6vh,28px);justify-items:start;max-width:min(68vw,1000px);pointer-events:auto}
 .plogo{display:flex;align-items:flex-end;gap:18px}
-.lgw{--lw:clamp(330px,32vw,500px);position:relative;display:block;width:var(--lw);margin-left:calc(var(--lw)*-.49);margin-block:-1.5% -1%}
+.lgw{--lw:clamp(330px,32vw,500px);position:relative;display:block;width:var(--lw);margin-block:-1.5% -1%}
 .lgi{display:block;width:100%;height:auto;position:relative}
-.lgr{position:absolute;inset:0;filter:url(#aurwave);-webkit-mask:linear-gradient(90deg,#000 38%,transparent 48%);mask:linear-gradient(90deg,#000 38%,transparent 48%);animation:aurb 6s ease-in-out infinite alternate}
-.lgt{-webkit-mask:linear-gradient(90deg,transparent 38%,#000 48%);mask:linear-gradient(90deg,transparent 38%,#000 48%);filter:drop-shadow(0 0 18px rgba(170,255,230,.25))}
-.lgw::before{content:"";position:absolute;left:5%;right:30%;top:-10%;bottom:-25%;background:radial-gradient(ellipse 60% 55% at 45% 60%,rgba(95,242,200,.22),rgba(139,107,255,.16) 45%,transparent 72%);filter:blur(22px);pointer-events:none;animation:aurg 7s ease-in-out infinite alternate}
-.lgw::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.55;
-  background:repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 9px,rgba(210,255,240,.55) 11px,rgba(255,255,255,0) 16px);background-size:150px 100%;animation:aurrays 7s linear infinite;
-  -webkit-mask-image:var(--lm),linear-gradient(90deg,#000 10%,#000 40%,transparent 54%);-webkit-mask-composite:source-in;mask-image:var(--lm),linear-gradient(90deg,#000 10%,#000 40%,transparent 54%);mask-composite:intersect;-webkit-mask-size:100% 100%;mask-size:100% 100%}
-@keyframes aurb{from{opacity:1}to{opacity:.72;transform:translateY(-3px)}}
-@keyframes aurg{from{opacity:.7;transform:translateX(-4%)}to{opacity:1;transform:translateX(4%) scale(1.06)}}
-@keyframes aurrays{to{background-position:150px 0}}
+.lgw::before{content:"";position:absolute;left:4%;right:34%;top:0;bottom:-10%;background:radial-gradient(ellipse 60% 50% at 50% 62%,rgba(95,242,200,.2),rgba(139,107,255,.14) 50%,transparent 75%);filter:blur(24px);pointer-events:none;animation:aurg 8s ease-in-out infinite alternate}
+.lgw::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(100deg,transparent 0 38%,rgba(190,255,235,0) 42%,rgba(215,255,240,.85) 50%,rgba(225,205,255,.55) 54%,transparent 62%);background-size:260% 100%;background-position:130% 0;animation:aurflow 6.5s 2.2s cubic-bezier(.45,.05,.35,1) infinite;
+  -webkit-mask-image:var(--lm);mask-image:var(--lm);-webkit-mask-size:100% 100%;mask-size:100% 100%}
+@keyframes aurg{from{opacity:.65;transform:translateX(-3%)}to{opacity:1;transform:translateX(3%) scale(1.05)}}
+@keyframes aurflow{0%{background-position:130% 0}55%,100%{background-position:-30% 0}}
 @keyframes lgtw{0%,100%{transform:scale(.55) rotate(0deg);opacity:.75}50%{transform:scale(.85) rotate(45deg);opacity:1}}
 @keyframes lgflash{0%{transform:scale(.6) rotate(0);opacity:1}30%{transform:scale(2.6) rotate(90deg);opacity:1}100%{transform:scale(.55) rotate(180deg);opacity:.75}}
 .plogo small{font-family:var(--disp);font-weight:500;font-size:.6rem;letter-spacing:.3em;color:var(--dim);padding-bottom:4px;border-left:1px solid rgba(255,255,255,.2);padding-left:14px}
@@ -385,7 +382,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
  .hl{max-width:none;width:100%;gap:14px}
  .hh{font-size:clamp(1.9rem,9.6vw,3rem);line-height:1.15}
  .hh .l2{padding-bottom:.14em}
- .lgw{--lw:260px}.plogo small{font-size:.52rem;padding-left:10px}
+ .lgw{--lw:232px}.plogo{gap:12px}.plogo small{font-size:.5rem;padding-left:10px;white-space:nowrap}
  .offer{width:100%;gap:10px 22px}
  .offer>div{flex:0 1 auto}
  .offer b{font-size:1.02rem}.offer span{font-size:.7rem}
@@ -405,7 +402,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
 
 <canvas id="world" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="aurwave" x="-5%" y="-25%" width="110%" height="150%"><feTurbulence type="fractalNoise" baseFrequency=".006 .045" numOctaves="2" seed="4" result="n"><animate attributeName="baseFrequency" dur="18s" values=".006 .045;.009 .06;.006 .045" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+
 
 <nav class="dock hide" id="dock" aria-label="เมนูหลัก"><svg class="dbg" viewBox="0 0 360 60" aria-hidden="true"><path id="dockp"/></svg><span class="bub" id="bub" aria-hidden="true"></span><a href="#hero" data-for="hero" aria-label="หน้าแรก"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 4.5l8 7V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z"/></svg><span>หน้าแรก</span></a><a href="#last" data-for="last" aria-label="โอกาสสุดท้าย"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c.6 3 4.8 5 4.8 10a4.8 4.8 0 0 1-9.6 0c0-2.2 1-3.6 2.2-4.6.2 1.5 1 2.4 1.9 2.6-.4-3.1.2-5.6.7-8z"/></svg><span>โอกาสสุดท้าย</span></a><a href="#compare" data-for="compare" aria-label="ราคา"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.8 12.6V4.8a1 1 0 0 1 1-1h7.8l7.6 7.6a1.4 1.4 0 0 1 0 2l-6.8 6.8a1.4 1.4 0 0 1-2 0z"/><circle cx="8.4" cy="8.4" r="1.5"/></svg><span>ราคา</span></a><a href="#journey" data-for="journey" aria-label="Zero to Hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 2.2 4.6 5.8 4.6 9.6L14.5 16h-5l-2.1-3.4C7.4 8.8 9 5.2 12 3z"/><path d="M9.5 16 7 19.5l3-.8M14.5 16l2.5 3.5-3-.8"/><circle cx="12" cy="9.5" r="1.6"/></svg><span>Zero to Hero</span></a><a href="#routes" data-for="routes" aria-label="เนื้อหา"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 4 8.5 4.5L12 13 3.5 8.5z"/><path d="m3.5 12.5 8.5 4.5 8.5-4.5"/><path d="m3.5 16.2 8.5 4.3 8.5-4.3"/></svg><span>เนื้อหา</span></a></nav>
 <header class="nav" id="nav">
@@ -422,7 +419,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
   <div class="dcap" id="dcap" aria-live="polite"><small>รุ่นพี่ DEK69 ที่ติดแล้ว</small><b id="dc-name"></b><span id="dc-uni"></span></div>
   <div class="hwrap">
    <div class="hl" id="hl">
-    <div class="plogo"><span class="lgw" id="lgw"><img class="lgi lgr" alt="" aria-hidden="true"><img class="lgi lgt" src="{{pxlogo}}" alt="Port Express" width="900" height="260"></span><small>BY HAMSTER HUB</small></div>
+    <div class="plogo"><span class="lgw" id="lgw"><img class="lgi lgt" src="{{pxlogo}}" alt="Port Express" width="900" height="257"></span><small>BY HAMSTER HUB</small></div>
     <h1 class="hh"><span class="l1">ม.6 ยังไม่มีพอร์ต?</span><span class="l2">2 เดือนนี้ <br class="mbr">เข้ามหาลัยได้แน่</span></h1>
     <div class="offer"><div><b class="g">5,990 บาท</b><span>ปกติ <s>9,990</s></span></div><div><b>2 เดือน</b><span>ครบทุกหัวข้อ</span></div><div><b>จ · พ · ศ</b><span>เริ่มเรียน 1 ธ.ค.</span></div></div>
     <div class="ctas"><a class="ai lg" href="#join"><span>จองที่นั่งเลย</span></a><a class="txtlink" href="#last">ทำไมต้องตอนนี้</a></div>
@@ -729,8 +726,10 @@ $('#stat-note').textContent=CONFIG.statNote;
 $('#ogrid').innerHTML=[[IMG.game,'หนูถือจอยเกม','เกมที่เล่นได้จริง','ขึ้น itch.io มีลิงก์ให้กรรมการกดเล่นได้ทันที'],[IMG.pitch,'หนูชี้กระดานพรีเซนต์','Pitch Deck และพอร์ต','แก้เนื้อหาพอร์ตกับเทรนเนอร์จนพร้อมส่ง'],[IMG.stage,'หนูพูดบนเวที','นำเสนอผ่าน Hero 5 คนขึ้นไป','พูดรู้เรื่อง ไม่สั่นตอนเข้าห้องสัมภาษณ์'],[IMG.grad,'หนูสามตัวใส่หมวกรับปริญญา','อาจารย์มหาลัยเห็นงานแล้ว','ฟังผลงานทุก 2 สัปดาห์ พร้อมซ้อมสัมภาษณ์']]
   .map(o=>`<div class="o fade"><img src="${o[0]}" alt="${o[1]}"><h3>${o[2]}</h3><p>${o[3]}</p></div>`).join('');
 $('#line-id').textContent=CONFIG.lineId;
-$('#lgw .lgr').src=$('#lgw .lgt').src; $('.flogo').src=$('#lgw .lgt').src;
+$('.flogo').src=$('#lgw .lgt').src;
 document.querySelectorAll('.lgw').forEach(w=>w.style.setProperty('--lm',`url(${w.querySelector('.lgt').src})`));
+function lgFit(){ const w=$('#lgw'); if(!w) return; w.style.marginLeft='0px'; const L=w.getBoundingClientRect().left, lw=w.offsetWidth; w.style.marginLeft=(-Math.min(lw*.49,Math.max(0,L-2))).toFixed(1)+'px'; }
+lgFit(); addEventListener('resize',lgFit); document.fonts&&document.fonts.ready.then(lgFit);
 // university search
 (function(){ const U=[['จุฬาลงกรณ์มหาวิทยาลัย','จุฬา CU Chula'],['มหาวิทยาลัยมหิดล','มหิดล MU'],['มหาวิทยาลัยเกษตรศาสตร์','เกษตร KU'],['สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง','สจล ลาดกระบัง KMITL'],['มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี','มจธ บางมด KMUTT'],['มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ','มจพ KMUTNB'],['มหาวิทยาลัยธรรมศาสตร์','ธรรมศาสตร์ TU'],['มหาวิทยาลัยศรีนครินทรวิโรฒ','มศว SWU'],['มหาวิทยาลัยศิลปากร','ศิลปากร SU'],['มหาวิทยาลัยเชียงใหม่','มช CMU'],['มหาวิทยาลัยขอนแก่น','มข KKU'],['มหาวิทยาลัยสงขลานครินทร์','มอ PSU'],['มหาวิทยาลัยบูรพา','บูรพา BUU'],['มหาวิทยาลัยนเรศวร','นเรศวร NU'],['มหาวิทยาลัยแม่ฟ้าหลวง','แม่ฟ้าหลวง MFU'],['มหาวิทยาลัยวลัยลักษณ์','วลัยลักษณ์ WU'],['มหาวิทยาลัยพะเยา','พะเยา UP'],['มหาวิทยาลัยมหาสารคาม','มมส MSU'],['มหาวิทยาลัยเทคโนโลยีสุรนารี','มทส SUT'],['มหาวิทยาลัยกรุงเทพ','BU Bangkok University'],['มหาวิทยาลัยศรีปทุม','ศรีปทุม SPU'],['มหาวิทยาลัยหอการค้าไทย','หอการค้า UTCC'],['มหาวิทยาลัยรังสิต','รังสิต RSU'],['มหาวิทยาลัยอัสสัมชัญ','เอแบค ABAC AU'],['มหาวิทยาลัยกรุงเทพธนบุรี','BTU'],['มหาวิทยาลัยเทคโนโลยีมหานคร','MUT'],['มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี','ราชมงคล RMUTT'],['สถาบันเทคโนโลยีไทย-ญี่ปุ่น','TNI'],['มหาวิทยาลัยราชภัฏ','ราชภัฏ'],['ยังไม่แน่ใจ ขอคำแนะนำ','ไม่รู้ ยังไม่เลือก']];
   const inp=$('#f-uni'), ul=$('#uni-list'); let cur=-1, items=[];
@@ -943,7 +942,6 @@ if(window.gsap && window.ScrollTrigger && !reduce){
   $$('[data-speed]').forEach(el=>gsap.to(el,{y:+el.dataset.speed,ease:'none',scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:true}}));
   const tl=gsap.timeline({delay:.15});
   tl.fromTo('#lgw',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:2.2,ease:'power2.inOut',clearProps:'clipPath'},.05)
-    .from('#lgw .lgt',{opacity:0,x:-24,filter:'blur(10px)',duration:1.2,ease:'expo.out',clearProps:'filter'},.9)
     .from('#hl > :not(.plogo), .plogo small',{opacity:0,y:34,filter:'blur(10px)',duration:1.2,ease:'expo.out',stagger:.08,clearProps:'all'},0)
     .to({v:0},{v:1,duration:1.6,ease:'power3.out',onUpdate:function(){ringIn=this.targets()[0].v;}},.2)
     .add(()=>{ introDone=true; },1.5);
