@@ -107,13 +107,11 @@ h1,h2{font-family:var(--thd)}
 .hwrap{position:relative;height:100%;max-width:1320px;margin-inline:auto;padding:96px var(--gr) 60px var(--gl);display:flex;align-items:center;pointer-events:none}
 .hl{display:grid;gap:clamp(14px,2.6vh,28px);justify-items:start;max-width:min(68vw,1000px);pointer-events:auto}
 .plogo{display:flex;align-items:flex-end;gap:18px}
-.lgw{--lw:clamp(330px,32vw,500px);position:relative;display:block;width:var(--lw);aspect-ratio:1456/415;margin-block:-1.5% -1%}
-.lgc{position:absolute;left:0;top:-32%;width:100%;height:150%;pointer-events:none}
-.lgt{position:absolute;left:47.60%;top:31.57%;width:50.07%;height:auto;display:block}
-.lgfb{display:none}
+.lgw{--lw:clamp(330px,32vw,500px);position:relative;display:block;width:var(--lw);aspect-ratio:900/257;margin-block:-1.5% -1%}
+.lgc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.lgfb{position:absolute;inset:0;width:100%;height:auto;display:block;opacity:0}
 .lgw.nogl .lgc{display:none}
-.lgw.nogl .lgfb{display:block;position:absolute;inset:0;width:100%;height:auto}
-.lgw.nogl .lgt{display:none}
+.lgw.nogl .lgfb{opacity:1}
 .lgw::before{content:"";position:absolute;left:2%;right:40%;top:5%;bottom:-5%;background:radial-gradient(ellipse 60% 50% at 50% 62%,rgba(95,242,200,.16),rgba(139,107,255,.12) 50%,transparent 75%);filter:blur(24px);pointer-events:none}
 @keyframes lgtw{0%,100%{transform:scale(.55) rotate(0deg);opacity:.75}50%{transform:scale(.85) rotate(45deg);opacity:1}}
 @keyframes lgflash{0%{transform:scale(.6) rotate(0);opacity:1}30%{transform:scale(2.6) rotate(90deg);opacity:1}100%{transform:scale(.55) rotate(180deg);opacity:.75}}
@@ -447,7 +445,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
   <div class="dcap" id="dcap" aria-live="polite"><small>รุ่นพี่ DEK69 ที่ติดแล้ว</small><b id="dc-name"></b><span id="dc-uni"></span></div>
   <div class="hwrap">
    <div class="hl" id="hl">
-    <div class="plogo"><span class="lgw" id="lgw" role="img" aria-label="Port Express"><canvas class="lgc" id="lgc" aria-hidden="true"></canvas><img class="lgfb" src="{{pxlogo}}" alt="" aria-hidden="true"><img class="lgt" src="{{pxword}}" alt="" aria-hidden="true" width="620" height="199"></span><small>BY HAMSTER HUB</small></div>
+    <div class="plogo"><span class="lgw" id="lgw" role="img" aria-label="Port Express"><canvas class="lgc" id="lgc" aria-hidden="true"></canvas><img class="lgfb" src="{{pxlogo}}" alt="" aria-hidden="true" width="900" height="257"></span><small>BY HAMSTER HUB</small></div>
     <h1 class="hh"><span class="l1">ม.6 ยังไม่มีพอร์ต?</span><span class="l2">2 เดือนนี้ <br class="mbr">เข้ามหาลัยได้แน่</span></h1>
     <div class="offer"><div><b class="g">5,990 บาท</b><span>ปกติ <s>9,990</s></span></div><div><b>2 เดือน</b><span>ครบทุกหัวข้อ</span></div><div><b>จ · พ · ศ</b><span>เริ่มเรียน 1 ธ.ค.</span></div></div>
     <div class="ctas"><a class="ai lg" href="#join"><span>จองที่นั่งเลย</span></a><a class="txtlink" href="#last">ทำไมต้องตอนนี้</a></div>
@@ -765,44 +763,43 @@ $('#ogrid').innerHTML=[[IMG.game,'หนูถือจอยเกม','เก�
   .map(o=>`<div class="o fade"><img src="${o[0]}" alt="${o[1]}"><h3>${o[2]}</h3><p>${o[3]}</p></div>`).join('');
 $('#line-id').textContent=CONFIG.lineId;
 $('.flogo').src=$('#lgw .lgfb').src;
-function lgFit(){ const w=$('#lgw'); if(!w) return; w.style.marginLeft='0px'; const L=w.getBoundingClientRect().left, lw=w.offsetWidth; w.style.marginLeft=(-Math.min(lw*.47,Math.max(0,L-2))).toFixed(1)+'px'; lgWave(); }
-// ---- live aurora ribbon behind the wordmark: curtain sways, rays drift, brightness breathes ----
-const LGC=$('#lgc'); let lgl=null, LU={}, lgW=0, lgH=0;
+function lgFit(){ const w=$('#lgw'); if(!w) return; w.style.marginLeft='0px'; const L=w.getBoundingClientRect().left, lw=w.offsetWidth; w.style.marginLeft=(-Math.min(lw*.49,Math.max(0,L-2))).toFixed(1)+'px'; lgWave(); }
+// ---- the logo artwork itself comes alive: its aurora ribbon sways in smooth waves, its rays shimmer,
+//      and the glow breathes; the wordmark half of the same image stays perfectly still ----
+const LGC=$('#lgc'), LGI=$('#lgw .lgfb'); let lgl=null, LU={}, lgW=0, lgH=0, lgReady=false;
 (function(){ try{
   lgl=LGC.getContext('webgl',{premultipliedAlpha:true,alpha:true,antialias:false}); if(!lgl) throw 0;
   const V='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  const F=`precision mediump float; uniform vec2 R; uniform float T;
+  const F=`precision mediump float; uniform vec2 R; uniform float T; uniform sampler2D S;
   float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
   float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+1.),u.x),u.y);}
-  float edge(float u,float t){
-    float uu=min(u,.5); float e=((((60.2958*uu-68.3568)*uu+21.8744)*uu-0.8845)*uu+0.4053);
-    e=.56+(e-.56)*1.45; e=mix(e,.26,smoothstep(.38,.76,u));
-    return e+.03*sin(u*8.5-t*.9)+.016*sin(u*17.-t*1.4+1.3)+.01*sin(u*31.+t*2.1);
-  }
-  vec3 strand(float u,float v,float t,float off,float amp,float tall){
-    float e=edge(u,t)+off+.025*sin(u*6.+t*.7+off*20.), d=e-v;
-    float Hr=tall*mix(.13,.44,smoothstep(.06,.4,u))*(1.-smoothstep(.58,.86,u)*.5);
-    float ray=(.22+.78*pow(n(vec2(u*62.+t*.32,t*.12)),1.35))*(.6+.4*n(vec2(u*9.-t*.22,off*9.)));
-    float up=exp(-max(d,0.)/Hr*1.9)*step(0.,d)*ray, low=exp(-max(-d,0.)*48.)*step(d,0.), line=exp(-abs(d)*95.);
-    float k=clamp(d/Hr,0.,1.);
-    vec3 cu=mix(vec3(.4,1.,.72),vec3(.08,.95,.6),smoothstep(0.,.1,k)); cu=mix(cu,vec3(.5,.38,1.),smoothstep(.22,.6,k)); cu=mix(cu,vec3(1.,.48,.88),smoothstep(.68,1.,k));
-    return (cu*up*1.55+vec3(.2,.9,.8)*low*.6+vec3(.8,1.,.92)*line*.85)*amp;
-  }
   void main(){
-    float u=gl_FragCoord.x/R.x, v=-.32+(1.-gl_FragCoord.y/R.y)*1.5;
-    vec3 c=strand(u,v,T,0.,1.,1.)+strand(u,v,T*1.1+3.,.075,.42,.6);
-    c*=smoothstep(0.,.2,u)*(1.-smoothstep(.74,.92,u))*smoothstep(-.32,-.1,v)*(1.-smoothstep(1.,1.18,v))*(.88+.12*sin(T*.8));
-    c=1.-exp(-c*1.5); gl_FragColor=vec4(c,clamp(max(c.r,max(c.g,c.b)),0.,1.));
+    vec2 uv=gl_FragCoord.xy/R; uv.y=1.-uv.y;
+    float env=1.-smoothstep(.36,.5,uv.x);
+    float tip=mix(.45,1.,1.-smoothstep(.0,.42,uv.x));
+    float wy=(sin(uv.x*7.4-T*1.05)*.03+sin(uv.x*13.1+T*.72)*.012+sin(uv.x*3.1-T*.45)*.018)*env*tip;
+    float wx=sin(uv.y*8.+T*.6)*.004*env;
+    vec4 c=texture2D(S,uv+vec2(wx,wy));
+    float rays=.78+.44*smoothstep(.15,.85,n(vec2((uv.x+wx)*46.+T*.42,T*.18)));
+    float br=.9+.1*sin(T*.85+uv.x*4.);
+    c.rgb*=mix(1.,rays*br,env);
+    gl_FragColor=vec4(c.rgb*c.a,c.a);
   }`;
   const mk=(t,src)=>{const sh=lgl.createShader(t); lgl.shaderSource(sh,src); lgl.compileShader(sh); if(!lgl.getShaderParameter(sh,lgl.COMPILE_STATUS)) throw new Error(lgl.getShaderInfoLog(sh)); return sh;};
   const pr=lgl.createProgram(); lgl.attachShader(pr,mk(lgl.VERTEX_SHADER,V)); lgl.attachShader(pr,mk(lgl.FRAGMENT_SHADER,F)); lgl.linkProgram(pr); lgl.useProgram(pr);
   const b=lgl.createBuffer(); lgl.bindBuffer(lgl.ARRAY_BUFFER,b); lgl.bufferData(lgl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),lgl.STATIC_DRAW);
   const l=lgl.getAttribLocation(pr,'p'); lgl.enableVertexAttribArray(l); lgl.vertexAttribPointer(l,2,lgl.FLOAT,false,0,0);
   LU.R=lgl.getUniformLocation(pr,'R'); LU.T=lgl.getUniformLocation(pr,'T'); lgl.clearColor(0,0,0,0);
+  const tx=lgl.createTexture(); lgl.bindTexture(lgl.TEXTURE_2D,tx);
+  [lgl.TEXTURE_WRAP_S,lgl.TEXTURE_WRAP_T].forEach(k=>lgl.texParameteri(lgl.TEXTURE_2D,k,lgl.CLAMP_TO_EDGE));
+  lgl.texParameteri(lgl.TEXTURE_2D,lgl.TEXTURE_MIN_FILTER,lgl.LINEAR); lgl.texParameteri(lgl.TEXTURE_2D,lgl.TEXTURE_MAG_FILTER,lgl.LINEAR);
+  const up=()=>{ lgl.bindTexture(lgl.TEXTURE_2D,tx); lgl.pixelStorei(lgl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,false); lgl.texImage2D(lgl.TEXTURE_2D,0,lgl.RGBA,lgl.RGBA,lgl.UNSIGNED_BYTE,LGI); lgReady=true; };
+  LGI.complete&&LGI.naturalWidth?up():LGI.addEventListener('load',up);
+  LGC.addEventListener('webglcontextlost',e=>{ e.preventDefault(); $('#lgw').classList.add('nogl'); });
 }catch(e){ lgl=null; $('#lgw').classList.add('nogl'); } })();
 function lgSize(){ if(!lgl) return; const d=Math.min(LITE?1.5:2,devicePixelRatio||1); lgW=Math.round(LGC.clientWidth*d); lgH=Math.round(LGC.clientHeight*d); LGC.width=lgW; LGC.height=lgH; lgl.viewport(0,0,lgW,lgH); }
 let lgF=0;
-function lgDraw(t){ if(!lgl||(HERO._p||0)>=1) return; if(LT&&(++lgF&1)) return; if(!lgW) lgSize(); lgl.uniform2f(LU.R,lgW,lgH); lgl.uniform1f(LU.T,reduce?4:t/1000); lgl.drawArrays(lgl.TRIANGLES,0,3); }
+function lgDraw(t){ if(!lgl||!lgReady||(HERO._p||0)>=1) return; if(LT&&(++lgF&1)) return; if(!lgW) lgSize(); lgl.uniform2f(LU.R,lgW,lgH); lgl.uniform1f(LU.T,reduce?4:t/1000); lgl.clear(lgl.COLOR_BUFFER_BIT); lgl.drawArrays(lgl.TRIANGLES,0,3); }
 function lgWave(){ lgSize(); }
 lgFit(); addEventListener('resize',lgFit); document.fonts&&document.fonts.ready.then(lgFit);
 // university search
