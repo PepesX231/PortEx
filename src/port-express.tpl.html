@@ -107,22 +107,14 @@ h1,h2{font-family:var(--thd)}
 .hwrap{position:relative;height:100%;max-width:1320px;margin-inline:auto;padding:96px var(--gr) 60px var(--gl);display:flex;align-items:center;pointer-events:none}
 .hl{display:grid;gap:clamp(14px,2.6vh,28px);justify-items:start;max-width:min(68vw,1000px);pointer-events:auto}
 .plogo{display:flex;align-items:flex-end;gap:18px}
-.lgw{--lw:clamp(330px,32vw,500px);position:relative;display:block;width:var(--lw);margin-block:-1.5% -1%}
-.lgi{display:block;width:100%;height:auto;position:relative}
-.lgr{position:absolute;inset:0;pointer-events:none;-webkit-mask:linear-gradient(90deg,#000 40%,transparent 49%);mask:linear-gradient(90deg,#000 40%,transparent 49%)}
-.lgr i{position:absolute;top:0;height:100%;background-image:var(--lm);background-repeat:no-repeat;will-change:transform;animation:lwv 4.6s ease-in-out infinite alternate}
-.lgr i.w1{--k:1}.lgr i.w2{animation-name:lwv2}.lgr i.w3{animation-name:lwv3}.lgr i.w4{animation-name:lwv4}
-@keyframes lwv{from{transform:translate3d(0,-2.6%,0)}to{transform:translate3d(0,2.6%,0)}}
-@keyframes lwv2{from{transform:translate3d(0,-1.9%,0)}to{transform:translate3d(0,1.9%,0)}}
-@keyframes lwv3{from{transform:translate3d(0,-1.2%,0)}to{transform:translate3d(0,1.2%,0)}}
-@keyframes lwv4{from{transform:translate3d(0,-.55%,0)}to{transform:translate3d(0,.55%,0)}}
-.lgw.wv .lgt{-webkit-mask:linear-gradient(90deg,transparent 40%,#000 49%);mask:linear-gradient(90deg,transparent 40%,#000 49%)}
-.lgw::before{content:"";position:absolute;left:4%;right:34%;top:0;bottom:-10%;background:radial-gradient(ellipse 60% 50% at 50% 62%,rgba(95,242,200,.2),rgba(139,107,255,.14) 50%,transparent 75%);filter:blur(24px);pointer-events:none;animation:aurg 8s ease-in-out infinite alternate}
-.lgw::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
-  background:linear-gradient(100deg,transparent 0 38%,rgba(190,255,235,0) 42%,rgba(215,255,240,.85) 50%,rgba(225,205,255,.55) 54%,transparent 62%);background-size:260% 100%;background-position:130% 0;animation:aurflow 6.5s 2.2s cubic-bezier(.45,.05,.35,1) infinite;
-  -webkit-mask-image:var(--lm);mask-image:var(--lm);-webkit-mask-size:100% 100%;mask-size:100% 100%}
-@keyframes aurg{from{opacity:.65;transform:translateX(-3%)}to{opacity:1;transform:translateX(3%) scale(1.05)}}
-@keyframes aurflow{0%{background-position:130% 0}55%,100%{background-position:-30% 0}}
+.lgw{--lw:clamp(330px,32vw,500px);position:relative;display:block;width:var(--lw);aspect-ratio:1456/415;margin-block:-1.5% -1%}
+.lgc{position:absolute;left:0;top:-32%;width:100%;height:150%;pointer-events:none}
+.lgt{position:absolute;left:47.60%;top:31.57%;width:50.07%;height:auto;display:block}
+.lgfb{display:none}
+.lgw.nogl .lgc{display:none}
+.lgw.nogl .lgfb{display:block;position:absolute;inset:0;width:100%;height:auto}
+.lgw.nogl .lgt{display:none}
+.lgw::before{content:"";position:absolute;left:2%;right:40%;top:5%;bottom:-5%;background:radial-gradient(ellipse 60% 50% at 50% 62%,rgba(95,242,200,.16),rgba(139,107,255,.12) 50%,transparent 75%);filter:blur(24px);pointer-events:none}
 @keyframes lgtw{0%,100%{transform:scale(.55) rotate(0deg);opacity:.75}50%{transform:scale(.85) rotate(45deg);opacity:1}}
 @keyframes lgflash{0%{transform:scale(.6) rotate(0);opacity:1}30%{transform:scale(2.6) rotate(90deg);opacity:1}100%{transform:scale(.55) rotate(180deg);opacity:.75}}
 .plogo small{font-family:var(--disp);font-weight:500;font-size:.6rem;letter-spacing:.3em;color:var(--dim);padding-bottom:4px;border-left:1px solid rgba(255,255,255,.2);padding-left:14px}
@@ -455,7 +447,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
   <div class="dcap" id="dcap" aria-live="polite"><small>รุ่นพี่ DEK69 ที่ติดแล้ว</small><b id="dc-name"></b><span id="dc-uni"></span></div>
   <div class="hwrap">
    <div class="hl" id="hl">
-    <div class="plogo"><span class="lgw" id="lgw"><span class="lgr" id="lgr" aria-hidden="true"></span><img class="lgi lgt" src="{{pxlogo}}" alt="Port Express" width="900" height="257"></span><small>BY HAMSTER HUB</small></div>
+    <div class="plogo"><span class="lgw" id="lgw" role="img" aria-label="Port Express"><canvas class="lgc" id="lgc" aria-hidden="true"></canvas><img class="lgfb" src="{{pxlogo}}" alt="" aria-hidden="true"><img class="lgt" src="{{pxword}}" alt="" aria-hidden="true" width="620" height="199"></span><small>BY HAMSTER HUB</small></div>
     <h1 class="hh"><span class="l1">ม.6 ยังไม่มีพอร์ต?</span><span class="l2">2 เดือนนี้ <br class="mbr">เข้ามหาลัยได้แน่</span></h1>
     <div class="offer"><div><b class="g">5,990 บาท</b><span>ปกติ <s>9,990</s></span></div><div><b>2 เดือน</b><span>ครบทุกหัวข้อ</span></div><div><b>จ · พ · ศ</b><span>เริ่มเรียน 1 ธ.ค.</span></div></div>
     <div class="ctas"><a class="ai lg" href="#join"><span>จองที่นั่งเลย</span></a><a class="txtlink" href="#last">ทำไมต้องตอนนี้</a></div>
@@ -719,7 +711,6 @@ void main(){
  }
  col=1.-exp(-col*1.3);
  col*=1.-.42*dot(uv,uv);
- col+=(h21(gl_FragCoord.xy+floor(T*30.)*17.)-.5)*.028;
  gl_FragColor=vec4(col,1.);
 }
 </script>
@@ -739,7 +730,7 @@ const IMG = {zero:'{{s_zero}}', hero:'{{s_hero}}', game:'{{s_game}}', pitch:'{{s
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 // devices that get the lighter effect set: phones/tablets and low-core / low-memory machines (looks the same, fewer per-frame filters)
-const LITE=matchMedia('(pointer:coarse)').matches||innerWidth<760||(navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=4;
+const LITE=matchMedia('(pointer:coarse)').matches||innerWidth<760;
 let LT=LITE; document.documentElement.classList.toggle('lite',LITE);
 const isMob=()=>innerWidth<760;
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), ss=t=>t*t*(3-2*t), lerp=(a,b,t)=>a+(b-a)*t, eo=t=>1-Math.pow(1-t,3);
@@ -773,15 +764,46 @@ $('#stat-note').textContent=CONFIG.statNote;
 $('#ogrid').innerHTML=[[IMG.game,'หนูถือจอยเกม','เกมที่เล่นได้จริง','ขึ้น itch.io มีลิงก์ให้กรรมการกดเล่นได้ทันที'],[IMG.pitch,'หนูชี้กระดานพรีเซนต์','Pitch Deck และพอร์ต','แก้เนื้อหาพอร์ตกับเทรนเนอร์จนพร้อมส่ง'],[IMG.stage,'หนูพูดบนเวที','นำเสนอผ่าน Hero 5 คนขึ้นไป','พูดรู้เรื่อง ไม่สั่นตอนเข้าห้องสัมภาษณ์'],[IMG.grad,'หนูสามตัวใส่หมวกรับปริญญา','อาจารย์มหาลัยเห็นงานแล้ว','ฟังผลงานทุก 2 สัปดาห์ พร้อมซ้อมสัมภาษณ์']]
   .map(o=>`<div class="o fade"><img src="${o[0]}" alt="${o[1]}"><h3>${o[2]}</h3><p>${o[3]}</p></div>`).join('');
 $('#line-id').textContent=CONFIG.lineId;
-$('.flogo').src=$('#lgw .lgt').src;
-document.querySelectorAll('.lgw').forEach(w=>w.style.setProperty('--lm',`url(${w.querySelector('.lgt').src})`));
-function lgFit(){ const w=$('#lgw'); if(!w) return; w.style.marginLeft='0px'; const L=w.getBoundingClientRect().left, lw=w.offsetWidth; w.style.marginLeft=(-Math.min(lw*.49,Math.max(0,L-2))).toFixed(1)+'px'; lgWave(); }
-// ribbon sways in thin vertical slices (transform-only, runs on the compositor); the wordmark stays still
-function lgWave(){ const w=$('#lgw'), r=$('#lgr'); if(!w||!r||reduce) return; const lw=w.offsetWidth, lh=w.querySelector('.lgt').offsetHeight; if(!lw||!lh) return;
-  const N=LITE?14:22, end=lw*.5, sw=end/N; let h='';
-  for(let i=0;i<N;i++){ const q=i/N, cls=q<.3?'':q<.55?'w2':q<.8?'w3':'w4';
-    h+=`<i class="${cls}" style="left:${(i*sw).toFixed(2)}px;width:${(sw+1.2).toFixed(2)}px;background-size:${lw}px ${lh}px;background-position:${(-i*sw).toFixed(2)}px 0;animation-delay:${(-i*.21).toFixed(2)}s"></i>`; }
-  r.innerHTML=h; w.classList.add('wv'); }
+$('.flogo').src=$('#lgw .lgfb').src;
+function lgFit(){ const w=$('#lgw'); if(!w) return; w.style.marginLeft='0px'; const L=w.getBoundingClientRect().left, lw=w.offsetWidth; w.style.marginLeft=(-Math.min(lw*.47,Math.max(0,L-2))).toFixed(1)+'px'; lgWave(); }
+// ---- live aurora ribbon behind the wordmark: curtain sways, rays drift, brightness breathes ----
+const LGC=$('#lgc'); let lgl=null, LU={}, lgW=0, lgH=0;
+(function(){ try{
+  lgl=LGC.getContext('webgl',{premultipliedAlpha:true,alpha:true,antialias:false}); if(!lgl) throw 0;
+  const V='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  const F=`precision mediump float; uniform vec2 R; uniform float T;
+  float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
+  float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+1.),u.x),u.y);}
+  float edge(float u,float t){
+    float uu=min(u,.5); float e=((((60.2958*uu-68.3568)*uu+21.8744)*uu-0.8845)*uu+0.4053);
+    e=.56+(e-.56)*1.45; e=mix(e,.26,smoothstep(.38,.76,u));
+    return e+.03*sin(u*8.5-t*.9)+.016*sin(u*17.-t*1.4+1.3)+.01*sin(u*31.+t*2.1);
+  }
+  vec3 strand(float u,float v,float t,float off,float amp,float tall){
+    float e=edge(u,t)+off+.025*sin(u*6.+t*.7+off*20.), d=e-v;
+    float Hr=tall*mix(.13,.44,smoothstep(.06,.4,u))*(1.-smoothstep(.58,.86,u)*.5);
+    float ray=(.22+.78*pow(n(vec2(u*62.+t*.32,t*.12)),1.35))*(.6+.4*n(vec2(u*9.-t*.22,off*9.)));
+    float up=exp(-max(d,0.)/Hr*1.9)*step(0.,d)*ray, low=exp(-max(-d,0.)*48.)*step(d,0.), line=exp(-abs(d)*95.);
+    float k=clamp(d/Hr,0.,1.);
+    vec3 cu=mix(vec3(.4,1.,.72),vec3(.08,.95,.6),smoothstep(0.,.1,k)); cu=mix(cu,vec3(.5,.38,1.),smoothstep(.22,.6,k)); cu=mix(cu,vec3(1.,.48,.88),smoothstep(.68,1.,k));
+    return (cu*up*1.55+vec3(.2,.9,.8)*low*.6+vec3(.8,1.,.92)*line*.85)*amp;
+  }
+  void main(){
+    float u=gl_FragCoord.x/R.x, v=-.32+(1.-gl_FragCoord.y/R.y)*1.5;
+    vec3 c=strand(u,v,T,0.,1.,1.)+strand(u,v,T*1.1+3.,.075,.42,.6);
+    c*=smoothstep(0.,.2,u)*(1.-smoothstep(.74,.92,u))*smoothstep(-.32,-.1,v)*(1.-smoothstep(1.,1.18,v))*(.88+.12*sin(T*.8));
+    c=1.-exp(-c*1.5); gl_FragColor=vec4(c,clamp(max(c.r,max(c.g,c.b)),0.,1.));
+  }`;
+  const mk=(t,src)=>{const sh=lgl.createShader(t); lgl.shaderSource(sh,src); lgl.compileShader(sh); if(!lgl.getShaderParameter(sh,lgl.COMPILE_STATUS)) throw new Error(lgl.getShaderInfoLog(sh)); return sh;};
+  const pr=lgl.createProgram(); lgl.attachShader(pr,mk(lgl.VERTEX_SHADER,V)); lgl.attachShader(pr,mk(lgl.FRAGMENT_SHADER,F)); lgl.linkProgram(pr); lgl.useProgram(pr);
+  const b=lgl.createBuffer(); lgl.bindBuffer(lgl.ARRAY_BUFFER,b); lgl.bufferData(lgl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),lgl.STATIC_DRAW);
+  const l=lgl.getAttribLocation(pr,'p'); lgl.enableVertexAttribArray(l); lgl.vertexAttribPointer(l,2,lgl.FLOAT,false,0,0);
+  LU.R=lgl.getUniformLocation(pr,'R'); LU.T=lgl.getUniformLocation(pr,'T'); lgl.clearColor(0,0,0,0);
+}catch(e){ lgl=null; $('#lgw').classList.add('nogl'); } })();
+function lgSize(){ if(!lgl) return; const d=Math.min(LITE?1.5:2,devicePixelRatio||1); lgW=Math.round(LGC.clientWidth*d); lgH=Math.round(LGC.clientHeight*d); LGC.width=lgW; LGC.height=lgH; lgl.viewport(0,0,lgW,lgH); }
+let lgF=0;
+function lgDraw(t){ if(!lgl||(HERO._p||0)>=1) return; if(LT&&(++lgF&1)) return; if(!lgW) lgSize(); lgl.uniform2f(LU.R,lgW,lgH); lgl.uniform1f(LU.T,reduce?4:t/1000); lgl.drawArrays(lgl.TRIANGLES,0,3); }
+function lgWave(){ lgSize(); }
 lgFit(); addEventListener('resize',lgFit); document.fonts&&document.fonts.ready.then(lgFit);
 // university search
 (function(){ const U=[['จุฬาลงกรณ์มหาวิทยาลัย','จุฬา CU Chula'],['มหาวิทยาลัยมหิดล','มหิดล MU'],['มหาวิทยาลัยเกษตรศาสตร์','เกษตร KU'],['สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง','สจล ลาดกระบัง KMITL'],['มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี','มจธ บางมด KMUTT'],['มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ','มจพ KMUTNB'],['มหาวิทยาลัยธรรมศาสตร์','ธรรมศาสตร์ TU'],['มหาวิทยาลัยศรีนครินทรวิโรฒ','มศว SWU'],['มหาวิทยาลัยศิลปากร','ศิลปากร SU'],['มหาวิทยาลัยเชียงใหม่','มช CMU'],['มหาวิทยาลัยขอนแก่น','มข KKU'],['มหาวิทยาลัยสงขลานครินทร์','มอ PSU'],['มหาวิทยาลัยบูรพา','บูรพา BUU'],['มหาวิทยาลัยนเรศวร','นเรศวร NU'],['มหาวิทยาลัยแม่ฟ้าหลวง','แม่ฟ้าหลวง MFU'],['มหาวิทยาลัยวลัยลักษณ์','วลัยลักษณ์ WU'],['มหาวิทยาลัยพะเยา','พะเยา UP'],['มหาวิทยาลัยมหาสารคาม','มมส MSU'],['มหาวิทยาลัยเทคโนโลยีสุรนารี','มทส SUT'],['มหาวิทยาลัยกรุงเทพ','BU Bangkok University'],['มหาวิทยาลัยศรีปทุม','ศรีปทุม SPU'],['มหาวิทยาลัยหอการค้าไทย','หอการค้า UTCC'],['มหาวิทยาลัยรังสิต','รังสิต RSU'],['มหาวิทยาลัยอัสสัมชัญ','เอแบค ABAC AU'],['มหาวิทยาลัยกรุงเทพธนบุรี','BTU'],['มหาวิทยาลัยเทคโนโลยีมหานคร','MUT'],['มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี','ราชมงคล RMUTT'],['สถาบันเทคโนโลยีไทย-ญี่ปุ่น','TNI'],['มหาวิทยาลัยราชภัฏ','ราชภัฏ'],['ยังไม่แน่ใจ ขอคำแนะนำ','ไม่รู้ ยังไม่เลือก']];
@@ -885,9 +907,9 @@ addEventListener('pointermove',e=>{ if(!dragR||!geo) return; const d=geo.mob?(e.
 addEventListener('pointerup',e=>{ if(!dragR) return; const c=e.target.closest&&e.target.closest('.dc'); if(dragR.moved<6&&c){ const i=DCS.indexOf(c), span=NC*geo.gap; let a=((i*geo.gap+rot)%span+span)%span-span/2; rotT=rot-a; rotV=0; } dragR=null; });
 
 // render scale and shader quality adapt to the measured frame time, so weak machines stay smooth
-const GQ={s:LITE?.36:Math.min(.62,940/innerWidth),min:.2,max:LITE?.46:.72,q:LITE?0:1,half:false,acc:0,n:0,last:0,good:0,f:0};
-function glSize(){ cv.width=Math.max(2,Math.round(innerWidth*GQ.s)); cv.height=Math.max(2,Math.round(innerHeight*GQ.s)); gl&&gl.viewport(0,0,cv.width,cv.height); }
-function glTune(t){ const dt=t-GQ.last; GQ.last=t; GQ.f++; if(t<1600||document.hidden||!(dt>0&&dt<600)) return; GQ.acc+=dt; GQ.n++;
+const GQ={s:LITE?.36:Math.min(.7,1000/innerWidth),min:.2,max:LITE?.46:.7,q:LITE?0:1,half:false,acc:0,n:0,last:0,good:0,f:0};
+function glSize(){ if(!LITE) GQ.s=Math.min(.7,1000/innerWidth); cv.width=Math.max(2,Math.round(innerWidth*GQ.s)); cv.height=Math.max(2,Math.round(innerHeight*GQ.s)); gl&&gl.viewport(0,0,cv.width,cv.height); }
+function glTune(t){ if(!LITE){ return; } const dt=t-GQ.last; GQ.last=t; GQ.f++; if(t<1600||document.hidden||!(dt>0&&dt<600)) return; GQ.acc+=dt; GQ.n++;
   if(GQ.n<40&&GQ.acc<1000) return; const avg=GQ.acc/GQ.n; GQ.acc=0; GQ.n=0;
   if(avg>21){ GQ.good=0; if(GQ.s>GQ.min+.005){ GQ.s=Math.max(GQ.min,GQ.s*.8); glSize(); } else if(GQ.q>0){ GQ.q=0; LT=true; document.documentElement.classList.add('lite'); } else GQ.half=true; }
   else if(avg<15){ if(GQ.half){ GQ.half=false; } else if(++GQ.good>=5&&GQ.s<GQ.max-.005){ GQ.s=Math.min(GQ.max,GQ.s*1.12); glSize(); GQ.good=0; } } }
@@ -1000,7 +1022,7 @@ function frame(t){
     ['uWater','uLight','uNeb'].forEach((n,m)=>{const a=hex(A[1+m]),b=hex(B[1+m]);gl.uniform3f(U[n],lerp(a[0],b[0],k),lerp(a[1],b[1],k),lerp(a[2],b[2],k));});
     gl.drawArrays(gl.TRIANGLES,0,3);
   }
-  scenes(); jDraw(t);
+  scenes(); jDraw(t); lgDraw(t);
   const dy=y-lastY; if(Math.abs(dy)>3){ nav.classList.toggle('away',dy>0&&y>innerHeight*.5); lastY=y; }
   const cur=k>.5?j:i; let at=null;
   const curK=anchors[cur].dataset.k; 
