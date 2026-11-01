@@ -107,10 +107,10 @@ h1,h2{font-family:var(--thd)}
 .hwrap{position:relative;height:100%;max-width:1320px;margin-inline:auto;padding:96px var(--gr) 60px var(--gl);display:flex;align-items:center;pointer-events:none}
 .hl{display:grid;gap:clamp(14px,2.6vh,28px);justify-items:start;max-width:min(68vw,1000px);pointer-events:auto}
 .plogo{display:flex;align-items:flex-end;gap:18px}
-.lgw{--lw:clamp(320px,31vw,480px);position:relative;display:block;width:var(--lw);margin-left:calc(var(--lw)*-.47)}
+.lgw{--lw:clamp(330px,32vw,500px);position:relative;display:block;width:var(--lw);margin-left:calc(var(--lw)*-.49);margin-block:-1.5% -1%}
 .lgi{display:block;width:100%;height:auto;position:relative}
-.lgr{position:absolute;inset:0;filter:url(#aurwave);-webkit-mask:linear-gradient(90deg,#000 44%,transparent 56%);mask:linear-gradient(90deg,#000 44%,transparent 56%);animation:aurb 6s ease-in-out infinite alternate}
-.lgt{-webkit-mask:linear-gradient(90deg,transparent 44%,#000 56%);mask:linear-gradient(90deg,transparent 44%,#000 56%);filter:drop-shadow(0 0 18px rgba(170,255,230,.25))}
+.lgr{position:absolute;inset:0;filter:url(#aurwave);-webkit-mask:linear-gradient(90deg,#000 38%,transparent 48%);mask:linear-gradient(90deg,#000 38%,transparent 48%);animation:aurb 6s ease-in-out infinite alternate}
+.lgt{-webkit-mask:linear-gradient(90deg,transparent 38%,#000 48%);mask:linear-gradient(90deg,transparent 38%,#000 48%);filter:drop-shadow(0 0 18px rgba(170,255,230,.25))}
 .lgw::before{content:"";position:absolute;left:5%;right:30%;top:-10%;bottom:-25%;background:radial-gradient(ellipse 60% 55% at 45% 60%,rgba(95,242,200,.22),rgba(139,107,255,.16) 45%,transparent 72%);filter:blur(22px);pointer-events:none;animation:aurg 7s ease-in-out infinite alternate}
 .lgw::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.55;
   background:repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 9px,rgba(210,255,240,.55) 11px,rgba(255,255,255,0) 16px);background-size:150px 100%;animation:aurrays 7s linear infinite;
@@ -385,7 +385,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
  .hl{max-width:none;width:100%;gap:14px}
  .hh{font-size:clamp(1.9rem,9.6vw,3rem);line-height:1.15}
  .hh .l2{padding-bottom:.14em}
- .lgw{--lw:250px}.plogo small{font-size:.52rem;padding-left:10px}
+ .lgw{--lw:260px}.plogo small{font-size:.52rem;padding-left:10px}
  .offer{width:100%;gap:10px 22px}
  .offer>div{flex:0 1 auto}
  .offer b{font-size:1.02rem}.offer span{font-size:.7rem}
@@ -422,7 +422,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
   <div class="dcap" id="dcap" aria-live="polite"><small>รุ่นพี่ DEK69 ที่ติดแล้ว</small><b id="dc-name"></b><span id="dc-uni"></span></div>
   <div class="hwrap">
    <div class="hl" id="hl">
-    <div class="plogo"><span class="lgw" id="lgw"><img class="lgi lgr" alt="" aria-hidden="true"><img class="lgi lgt" src="{{pxlogo}}" alt="Port Express" width="900" height="232"></span><small>BY HAMSTER HUB</small></div>
+    <div class="plogo"><span class="lgw" id="lgw"><img class="lgi lgr" alt="" aria-hidden="true"><img class="lgi lgt" src="{{pxlogo}}" alt="Port Express" width="900" height="260"></span><small>BY HAMSTER HUB</small></div>
     <h1 class="hh"><span class="l1">ม.6 ยังไม่มีพอร์ต?</span><span class="l2">2 เดือนนี้ <br class="mbr">เข้ามหาลัยได้แน่</span></h1>
     <div class="offer"><div><b class="g">5,990 บาท</b><span>ปกติ <s>9,990</s></span></div><div><b>2 เดือน</b><span>ครบทุกหัวข้อ</span></div><div><b>จ · พ · ศ</b><span>เริ่มเรียน 1 ธ.ค.</span></div></div>
     <div class="ctas"><a class="ai lg" href="#join"><span>จองที่นั่งเลย</span></a><a class="txtlink" href="#last">ทำไมต้องตอนนี้</a></div>
@@ -560,7 +560,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
 
 <footer>
  <div class="wrap">
-  <span class="logo"><span style="display:block;width:96px;height:50px;overflow:hidden;position:relative"><img class="flogo" alt="Port Express" style="position:absolute;right:0;top:0;height:50px;width:auto;max-width:none;border-radius:0;background:none"></span><span style="font-size:.8rem;color:var(--dim);font-weight:500">โดย Hamster Hub</span></span>
+  <span class="logo"><img class="flogo" alt="Port Express" width="900" height="260" style="width:190px;height:auto;border-radius:0;background:none;margin-left:-70px"><span style="font-size:.8rem;color:var(--dim);font-weight:500">โดย Hamster Hub</span></span>
   <span>LINE <span class="num" id="line-id"></span><button class="copy" id="copy" type="button">คัดลอก</button></span>
  </div>
 </footer>
@@ -577,8 +577,11 @@ float noise(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);
 float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p=p*2.03+7.1;a*=.5;}return v;}
 float fbm3(vec2 p){float v=0.,a=.5;for(int i=0;i<3;i++){v+=a*noise(p);p=p*2.07+3.3;a*=.5;}return v;}
 float wave(vec2 p){
- float h=sin(p.x*.6+T*.5)*.2+sin(p.y*.9-T*.42+p.x*.3)*.16+sin((p.x*1.4+p.y)*1.9+T*1.1)*.06;
- return h+(fbm3(p*.8+vec2(T*.15,-T*.1))-.5)*.5;
+ float h=sin(dot(p,vec2(.8,.6))*.55+T*.55)*.26;
+ h+=sin(dot(p,vec2(-.45,.89))*.9+T*.7)*.15;
+ h+=sin(dot(p,vec2(.25,-.97))*1.55+T*1.0)*.075;
+ h+=sin(dot(p,vec2(.96,.28))*2.6+T*1.35)*.035;
+ return h+(noise(p*1.3+vec2(T*.18,-T*.12))-.5)*.07;
 }
 float caustic(vec2 p){
  vec2 i=p; float c=1.; float inten=.005;
@@ -616,16 +619,18 @@ vec3 aboveSky(vec2 uv){
   vec3 c=night+aurora(rd);
   vec3 g=rd*190.; float hs=h31(floor(g));
   c+=vec3(1.)*step(.988,hs)*smoothstep(.45,0.,length(fract(g)-.5))*(.6+.4*sin(T*2.+hs*50.));
-  return c+uLight*.12*exp(-rd.y*8.);
+  c+=uLight*.12*exp(-rd.y*8.);
+  return c;
  }
- float t=.8/-rd.y; vec2 wp=(rd*t).xz+vec2(0.,T*.3);
- float e=.06;
+  float t=.8/-rd.y; vec2 wp=(rd*t).xz+vec2(0.,T*.22);
+ float e=.08+t*.02, k=.55*exp(-t*.07);
  float hx=(wave(wp+vec2(e,0.))-wave(wp-vec2(e,0.)))/(2.*e), hz=(wave(wp+vec2(0.,e))-wave(wp-vec2(0.,e)))/(2.*e);
- vec3 n=normalize(vec3(-hx*.35,1.,-hz*.35));
- vec3 rr=reflect(rd,n); rr.y=abs(rr.y)+.02;
- vec3 c=(night+aurora(rr))*.75;
- float fr=.03+.97*pow(1.-max(dot(n,-rd),0.),5.);
- return mix(uWater*.12,c,clamp(fr+.35,0.,1.));
+ vec3 n=normalize(vec3(-hx*k,1.,-hz*k));
+ vec3 rr=reflect(rd,n); rr.y=max(rr.y,.015);
+ vec3 sk=mix(vec3(.05,.03,.16),vec3(.01,.01,.05),smoothstep(0.,.8,rr.y))+aurora(rr)*1.05+uLight*.12*exp(-rr.y*8.);
+ float fr=.04+.96*pow(1.-max(dot(n,-rd),0.),5.);
+ vec3 c=mix(uWater*.1,sk,clamp(fr*1.2+.35,0.,1.));
+ return c;
 }
 void main(){
  vec2 uv=(gl_FragCoord.xy-.5*R)/R.y;
