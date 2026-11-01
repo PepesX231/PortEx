@@ -805,7 +805,7 @@ try{
 const RING=$('#ring'), DECK=$('#deck'), DCS=$$('.dc'), NC=DCS.length, dcap=$('#dcap');
 let rot=0, rotV=(reduce||!window.gsap)?0:2.6, geo=null, focusI=-1, ringIn=(reduce||!window.gsap)?1:0, dragR=null, rotT=null, lastT=performance.now();
 function ringGeo(){ const W=innerWidth,H=innerHeight,mob=W<760;
-  if(mob){ const R=W*1.2, cw=Math.min(130,W*.31,H*.15); geo={mob,R,cw,ch:cw*660/530,cx:W/2,cy:H*.66+R,f0:-Math.PI/2,gap:.36}; }
+  if(mob){ const R=W*1.2, cw=Math.min(130,W*.31,H*.15), ch=cw*660/530, hl=$('#hl'), hb=hl?hl.offsetTop+hl.offsetHeight:0, fy=Math.min(H-ch*.62-96,Math.max(H*.66,hb+ch*.62+28)); geo={mob,R,cw,ch,cx:W/2,cy:fy+R,f0:-Math.PI/2,gap:.36}; }
   else { const R=Math.min(W*.42,H*.8), cw=clamp(W*.12,150,205); geo={mob,R,cw,ch:cw*660/530,cx:W+R*.5,cy:H*.56,f0:Math.PI,gap:.52}; }
   const bw=geo.cw*1.35, D=geo.R*2+bw; Object.assign(RING.style,{width:D+'px',height:D+'px',left:(geo.cx-D/2)+'px',top:(geo.cy-D/2)+'px',borderWidth:bw+'px'});
   DCS.forEach(c=>{c.style.width=geo.cw+'px';c.style.height=geo.ch+'px';});
