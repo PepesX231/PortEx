@@ -522,7 +522,7 @@ h1,h2{font-family:var(--thd)}
 
 /* stats in 3D: canvas + projected labels share one box that bleeds past the figure and fades out at the sides */
 #scv,.s3w{position:absolute;left:-10%;top:-10%;width:120%;height:112%;pointer-events:none}
-#scv{display:none;-webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),linear-gradient(180deg,transparent,#000 12%,#000 84%,transparent);-webkit-mask-composite:source-in;mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),linear-gradient(180deg,transparent,#000 12%,#000 84%,transparent);mask-composite:intersect}
+#scv{display:none;-webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent);-webkit-mask-composite:source-in;mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent);mask-composite:intersect}
 .s3w{display:none}
 .bc.g3 #scv,.bc.g3 .s3w{display:block}
 .bc.g3 .bc-plot>*,.bc.g3 .bc-x{visibility:hidden}
@@ -1602,7 +1602,7 @@ function sInit(){ try{
     // invisible occluder: hides the lines behind, lets the page background show through
     const fg=new T.BufferGeometry(), fp=new Float32Array(NP*2*3), idx=[];
     for(let i=0;i<NP;i++){ fp[i*6]=XS[i]; fp[i*6+2]=z; fp[i*6+3]=XS[i]; fp[i*6+4]=-.02; fp[i*6+5]=z; if(i<NP-1){ const a=i*2; idx.push(a,a+1,a+2,a+1,a+3,a+2); } }
-    fg.setAttribute('position',new T.BufferAttribute(fp,3)); fg.setIndex(idx);
+    fg.setAttribute('position',new T.BufferAttribute(fp,3)); fg.setIndex(idx); if(!j){ const tv=new Float32Array(NP*2); for(let i=0;i<NP;i++) tv[i*2]=1; fg.setAttribute('tv',new T.BufferAttribute(tv,1)); }
     const fm=new T.Mesh(fg,new T.MeshBasicMaterial({colorWrite:false,side:T.DoubleSide})); fm.renderOrder=0; S.add(fm);
     const lg=new T.BufferGeometry(), lp=new Float32Array(NP*3), lc=new Float32Array(NP*3), fade=1-j/NR;
     for(let i=0;i<NP;i++){ lp[i*3]=XS[i]; lp[i*3+2]=z; const c=mint.clone().lerp(grey,MIX[i]).lerp(vio,Math.min(1,j/NR*1.3)).multiplyScalar(EF[i]); lc[i*3]=c.r; lc[i*3+1]=c.g; lc[i*3+2]=c.b; }
@@ -1617,14 +1617,14 @@ function sInit(){ try{
     const m=new T.Mesh(gm,new T.MeshBasicMaterial(Object.assign({vertexColors:true,transparent:true,opacity:op,depthWrite:false,side:T.DoubleSide},ADD))); m.renderOrder=2; S.add(m); return {p,gm,th}; };
   const ribs=[rib(.035,1),rib(.16,.22)];
   const fillM=new T.ShaderMaterial(Object.assign({transparent:true,depthWrite:false,depthTest:false,side:T.DoubleSide,uniforms:{h:{value:val(50)}},
-    vertexShader:'varying float vy; varying float vx; void main(){ vy=position.y; vx=position.x; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }',
-    fragmentShader:'uniform float h; varying float vy; varying float vx; void main(){ float k=clamp(vy/h,0.,1.); vec3 a=vec3(.37,.95,.78), b=vec3(.6,.64,.78); vec3 c=mix(a,b,smoothstep(-.5,.5,vx)); float e=smoothstep(-4.8,-3.3,vx)*smoothstep(4.8,3.3,vx); gl_FragColor=vec4(c*(.07+.42*pow(k,1.5))*e,1.); }'},ADD));
+    vertexShader:'attribute float tv; varying float vy; varying float vx; varying float vt; void main(){ vy=position.y; vx=position.x; vt=tv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }',
+    fragmentShader:'uniform float h; varying float vy; varying float vx; varying float vt; void main(){ float k=clamp(vy/h,0.,1.); vec3 a=vec3(.37,.95,.78), b=vec3(.6,.64,.78); vec3 c=mix(a,b,smoothstep(-.5,.5,vx)); float e=smoothstep(-4.8,-3.3,vx)*smoothstep(4.8,3.3,vx); float u=pow(vt,2.4)*smoothstep(.0,.6,vy); gl_FragColor=vec4(c*u*(.18+.4*k)*e,1.); }'},ADD));
   const fill=new T.Mesh(rows[0].fg,fillM); fill.renderOrder=2; S.add(fill);
   // floor dots + soft pools under the peaks
-  const dp=[]; for(let i=0;i<54;i++) for(let j=0;j<30;j++) dp.push(X0-.8+i*.2,0,1.2-j*.34); const dg=new T.BufferGeometry(); dg.setAttribute('position',new T.Float32BufferAttribute(dp,3));
-  S.add(new T.Points(dg,new T.PointsMaterial(Object.assign({color:0x6f86a8,size:.025,transparent:true,opacity:.5,depthWrite:false},ADD))));
+  const dp=[], dc=[]; for(let i=0;i<54;i++) for(let j=0;j<30;j++){ dp.push(X0-.8+i*.2,0,1.2-j*.34); const f=ss(clamp(i/12))*ss(clamp((53-i)/12))*ss(clamp(j/6))*ss(clamp((29-j)/10)); dc.push(.44*f,.53*f,.66*f); } const dg=new T.BufferGeometry(); dg.setAttribute('position',new T.Float32BufferAttribute(dp,3)); dg.setAttribute('color',new T.Float32BufferAttribute(dc,3));
+  S.add(new T.Points(dg,new T.PointsMaterial(Object.assign({vertexColors:true,size:.025,transparent:true,opacity:.6,depthWrite:false},ADD))));
   // scale guides on the front plane + the gap bracket
-  const gm2=new T.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.1}); [20,40,60].forEach(v=>S.add(new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(X0,val(v),.25),new T.Vector3(X1,val(v),.25)]),gm2)));
+  const gm2=new T.LineBasicMaterial(Object.assign({vertexColors:true,transparent:true,opacity:.16,depthWrite:false},ADD)); [20,40,60].forEach(v=>{ const g2=new T.BufferGeometry(), pp=[], cc=[]; for(let i=0;i<=40;i++){ const x=X0+(X1-X0)*i/40, f=ss(clamp(i/10))*ss(clamp((40-i)/10)); pp.push(x,val(v),.25); cc.push(f,f,f); } g2.setAttribute('position',new T.Float32BufferAttribute(pp,3)); g2.setAttribute('color',new T.Float32BufferAttribute(cc,3)); S.add(new T.Line(g2,gm2)); });
   const dm=new T.LineDashedMaterial({color:0xffd27a,dashSize:.08,gapSize:.07,transparent:true,opacity:0});
   const dln=pts=>{ const l=new T.Line(new T.BufferGeometry().setFromPoints(pts.map(p=>new T.Vector3(...p))),dm); l.computeLineDistances(); l.renderOrder=3; S.add(l); };
   dln([[PU,val(50),.3],[0,val(50),.3]]); dln([[PT,val(15),.3],[0,val(15),.3]]); dln([[0,val(15),.3],[0,val(50),.3]]);
@@ -1634,7 +1634,7 @@ function sInit(){ try{
   SVS.classList.add('g3'); sSize(); cachePos();
  }catch(e){ console.warn('stats scene',e); SG=null; } }
 function sSize(){ if(!SG) return; const W=SCV.clientWidth, H=SCV.clientHeight; if(!W||!H) return; SG.w=W; SG.h=H; SG.R.setSize(W,H,false); SG.cam.aspect=W/H; SG.cam.updateProjectionMatrix();
-  const tn=Math.tan(SG.cam.fov*Math.PI/360); SG.d=.86*Math.max((SG.cam.aspect<1.25?9.4:10.4)/(2*tn*SG.cam.aspect)/.9,5.2/(2*tn)/.62); }
+  const tn=Math.tan(SG.cam.fov*Math.PI/360); SG.d=.93*Math.max((SG.cam.aspect<1.25?9.4:10.4)/(2*tn*SG.cam.aspect)/.9,5.2/(2*tn)/.62); }
 const eob=x=>{ const c1=1.5,c3=c1+1; return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2); };
 function sDraw(now){ if(!SG) return; const r=RT(SVS); if(r.bottom<-80||r.top>innerHeight+80) return; if(LT&&(++sFr&1)) return;
   const {cam,rows,ribs,L,XS,NP,NR}=SG, t=reduce?0:now/1000, sp=STATS._vp||0, q=clamp((innerHeight-r.top)/(innerHeight+r.height)), mob=isMob();
