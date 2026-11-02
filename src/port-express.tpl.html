@@ -234,20 +234,23 @@ h1,h2{font-family:var(--thd)}
 .jnodes{position:absolute;inset:0;pointer-events:none}
 .jn{position:absolute;left:0;top:0;display:grid;justify-items:center;gap:4px;width:min(25vw,300px);text-align:center;padding:0;background:none;border:0;color:var(--faint);font:inherit;cursor:pointer;pointer-events:auto;opacity:0;transition:opacity .6s ease,color .3s ease;will-change:transform}
 .jn.lit{opacity:1}
-.jn{--rkw:clamp(40px,3.4vw,52px)}
-.orb{position:relative;display:block;flex:none;width:var(--rkw,40px);height:var(--rkw,40px);border-radius:50%;background:radial-gradient(closest-side,#fff 0 20%,color-mix(in srgb,var(--rc) 65%,#fff) 32%,var(--rc) 50%,color-mix(in srgb,var(--rc) 32%,transparent) 74%,transparent 100%);box-shadow:0 0 18px color-mix(in srgb,var(--rc) 75%,transparent),0 0 56px color-mix(in srgb,var(--rc) 35%,transparent);transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
-.orb::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:1.5px solid transparent;border-top-color:var(--rc);border-right-color:color-mix(in srgb,var(--rc) 40%,transparent);animation:orbs 4.5s linear infinite;animation-delay:var(--dl,0s)}
-.orb::after{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--rc);opacity:0;animation:orbp 2.8s cubic-bezier(.2,.7,.3,1) infinite;animation-delay:var(--dl,0s)}
-.orb.big{--rkw:56px}.orb.big::before{inset:-12px;border-width:2px}
-@keyframes orbs{to{transform:rotate(1turn)}}
-@keyframes orbp{0%{transform:scale(.9);opacity:.85}100%{transform:scale(2.7);opacity:0}}
+.jn{--rkw:clamp(44px,3.6vw,56px)}
+.orb{position:relative;display:block;flex:none;width:var(--rkw,44px);height:var(--rkw,44px);transition:transform .7s cubic-bezier(.34,1.56,.64,1)}
+.orb s{position:absolute;inset:0;display:block;animation:orbB 5s ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
+.orb img{position:absolute;left:50%;top:50%;width:290%;height:290%;max-width:none;margin:-145% 0 0 -145%;pointer-events:none;animation:orbR 30s linear infinite}
+.orb img+img{opacity:.5;animation:orbR2 46s linear infinite}
+@keyframes orbR{to{transform:rotate(1turn)}}
+@keyframes orbR2{from{transform:rotate(0) scale(1.2)}to{transform:rotate(-1turn) scale(1.2)}}
+@keyframes orbB{from{transform:scale(.9);opacity:.8}to{transform:scale(1.06);opacity:1}}
+.orb.big{--rkw:62px}
+.lz .orb img{width:235%;height:235%;margin:-117.5% 0 0 -117.5%}
 
-.jn small{margin-top:20px;font-size:.78rem;color:var(--dim);letter-spacing:.02em}
+.jn small{margin-top:32px;font-size:.78rem;color:var(--dim);letter-spacing:.02em}
 .jn b{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,2vw,1.8rem);color:var(--rc);letter-spacing:-.01em;line-height:1.1}
 .jn em{display:block;font-style:normal;font-weight:600;font-size:1.02rem;color:#fff}
 .jn span{font-size:.88rem;color:var(--dim);line-height:1.55;max-width:30ch}
 .jn.on{color:#fff}
-.jn.on i{transform:scale(1.3)}
+.jn.on i{transform:scale(1.2)}
 .jn{opacity:0}.jn.lit{opacity:.8}.jn.lit.on{opacity:1}
 @media (hover:hover){.jn:hover{color:#fff}}
 
@@ -378,24 +381,30 @@ h1,h2{font-family:var(--thd)}
 .lla h4{margin:0 0 4px;font-family:var(--disp);font-size:.92rem;font-weight:700;color:var(--c);white-space:nowrap;letter-spacing:.02em}
 .lla .li{--iw:196px}
 .lfin{width:min(440px,34vw);display:grid;gap:12px;justify-items:start}
-.lf-tr{width:clamp(110px,10vw,160px);opacity:0;transform:scale(.3) rotate(-20deg);transition:transform 1.1s cubic-bezier(.34,1.56,.64,1),opacity .5s ease;filter:drop-shadow(0 0 36px rgba(255,200,90,.55))}
-.stage.fin .lf-tr{opacity:1;transform:none;animation:trf 3.2s ease-in-out 1.2s infinite}
-@keyframes trf{50%{transform:translateY(-8px) rotate(3deg)}}
-.lf-k{font-family:var(--disp);font-weight:800;font-size:clamp(2.4rem,5vw,4.8rem);line-height:1;letter-spacing:-.02em;background:linear-gradient(100deg,#9fe8ff,#fff 30%,var(--gold) 62%,#ff9fbf);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.25;transform:scale(.8);transform-origin:left center;transition:transform 1s cubic-bezier(.34,1.56,.64,1) .12s,opacity .5s ease .12s}
-.lf-k span{font-size:.7em}
-.stage.fin .lf-k{opacity:1;transform:none}
-.lf-cp{font-size:.98rem}.lf-cp b{color:var(--mint);font-family:var(--disp)}
-.lgx.hx{font-size:min(38vh,22vw);-webkit-text-stroke:2px rgba(255,210,122,.45);opacity:.18;transition:opacity 1.2s ease,color 1.2s ease,text-shadow 1.2s ease}
-.stage.fin .lgx.hx{opacity:.85;color:rgba(255,210,122,.1);-webkit-text-stroke-color:rgba(255,226,160,.85);text-shadow:0 0 70px rgba(255,200,100,.3)}
-.ship.fin img{filter:drop-shadow(0 0 22px rgba(255,210,122,.85)) drop-shadow(0 12px 16px rgba(0,0,0,.5))}
-.lflash{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;background:radial-gradient(55% 55% at 50% 56%,rgba(255,238,200,.6),rgba(255,210,122,.14) 42%,transparent 72%)}
-.stage.fin .lflash{animation:lfl 1.5s ease-out}
-@keyframes lfl{0%{opacity:0}10%{opacity:1}100%{opacity:0}}
-.lrk{position:absolute;left:0;top:0;z-index:4;pointer-events:none;text-align:center;opacity:0;--tp:translate(-50%,-50%);transform:var(--tp)}
-.lrk small{display:block;font-family:var(--disp);font-size:.78rem;font-weight:700;letter-spacing:.32em;color:#fff;margin-bottom:4px}
-.lrk b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,4.4vw,3.8rem);line-height:1;color:var(--c);text-shadow:0 0 34px color-mix(in srgb,var(--c) 70%,transparent)}
-.lrk.go{animation:lrk 1.9s cubic-bezier(.2,.7,.2,1) forwards}
-@keyframes lrk{0%{opacity:0;transform:var(--tp) scale(.4)}14%{opacity:1;transform:var(--tp) scale(1.12)}28%{transform:var(--tp) scale(1)}72%{opacity:1;transform:var(--tp) scale(1)}100%{opacity:0;transform:var(--tp) translateY(-34px) scale(.96)}}
+.lportal{transform:translate(-50%,-50%);pointer-events:none}
+.lportal .orb{--rkw:clamp(72px,6.4vw,100px);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.stage.fin .lportal .orb{transform:scale(1.65)}
+.lbloom{width:min(1300px,115vw);max-width:none;opacity:0;transform:translate(-50%,-50%) scale(.7) rotate(-6deg);transition:opacity 2s ease,transform 3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.stage.fin .lbloom{opacity:.95;transform:translate(-50%,-50%) scale(1) rotate(0)}
+.lf-hero{width:clamp(110px,9vw,150px);opacity:.25;transform:translateY(20px) scale(.75);transition:transform 1.2s cubic-bezier(.34,1.56,.64,1) .3s,opacity .7s ease .3s;filter:drop-shadow(0 12px 24px rgba(0,0,0,.45))}
+.stage.fin .lf-hero{opacity:1;transform:none;animation:lfh 4s ease-in-out 1.6s infinite}
+@keyframes lfh{50%{transform:translateY(-10px) rotate(-2deg)}}
+.lf-k{font-family:var(--disp);font-size:.8rem;font-weight:700;letter-spacing:.32em;color:var(--gold)}
+.lfin h3{font-size:clamp(1.9rem,3.2vw,3rem)!important}
+.lf-cp{font-size:1rem}.lf-cp b{color:var(--mint);font-family:var(--disp)}
+.ship.fin img{filter:drop-shadow(0 0 18px rgba(255,214,140,.7)) drop-shadow(0 12px 16px rgba(0,0,0,.5))}
+.lflash{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;background:radial-gradient(60% 60% at 50% 56%,rgba(255,236,196,.42),rgba(255,210,122,.1) 45%,transparent 74%)}
+.stage.fin .lflash{animation:lfl 2s ease-out}
+@keyframes lfl{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+.lrk{position:absolute;left:0;top:0;z-index:2;pointer-events:none;text-align:center;opacity:0;--tp:translate(-50%,-50%);transform:var(--tp)}
+.lrk img{position:absolute;left:50%;top:50%;width:min(44vw,420px);max-width:none;transform:translate(-50%,-50%) scale(.3);opacity:0}
+.lrk small,.lrk b{position:relative;top:-118px}
+.lrk small{display:block;font-family:var(--disp);font-size:.76rem;font-weight:700;letter-spacing:.32em;color:#fff;margin-bottom:4px}
+.lrk b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,4.2vw,3.6rem);line-height:1;color:var(--c);text-shadow:0 0 30px color-mix(in srgb,var(--c) 55%,transparent)}
+.lrk.go{animation:lrk 2s cubic-bezier(.2,.7,.2,1) forwards}
+.lrk.go img{animation:lrki 1.8s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes lrk{0%{opacity:0}12%{opacity:1}75%{opacity:1}100%{opacity:0}}
+@keyframes lrki{0%{opacity:0;transform:translate(-50%,-50%) scale(.25) rotate(-20deg)}30%{opacity:.95}100%{opacity:0;transform:translate(-50%,-50%) scale(1.15) rotate(25deg)}}
 .lfin h3{font-size:clamp(1.6rem,2.6vw,2.4rem);line-height:1.2}
 .lfin h3 em{font-style:normal;background:linear-gradient(180deg,#FFF3C4,var(--gold) 55%,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lfin p{color:var(--dim)}
@@ -404,8 +413,8 @@ h1,h2{font-family:var(--thd)}
 
 
 /* stats in 3D: canvas + projected labels share one box that bleeds past the figure and fades out at the sides */
-#scv,.s3w{position:absolute;left:-16%;top:-12%;width:132%;height:116%;pointer-events:none}
-#scv{display:none;-webkit-mask:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent);mask:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent)}
+#scv,.s3w{position:absolute;left:-10%;top:-10%;width:120%;height:112%;pointer-events:none}
+#scv{display:none;-webkit-mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
 .s3w{display:none}
 .bc.g3 #scv,.bc.g3 .s3w{display:block}
 .bc.g3 .bc-plot>*,.bc.g3 .bc-x{visibility:hidden}
@@ -478,7 +487,8 @@ h1,h2{font-family:var(--thd)}
 .vrow.them .vbar i{background:rgba(246,243,255,.32)}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;margin:-1px;padding:0;border:0}
 .st-t .h2{font-size:clamp(2rem,3.6vw,3.4rem)}
-.sbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,90px);align-items:center;margin-top:18px}
+.sbar{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(10px,3vh,30px);margin-top:18px}
+.bc.g3 .bc-plot{height:clamp(360px,56vh,560px)}
 .bc{margin:0;position:relative}
 .bc-plot{position:relative;height:clamp(320px,50vh,460px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);padding:0 8% 0 54px;align-items:end}
 .bc-grid{position:absolute;inset:0;pointer-events:none}
@@ -571,7 +581,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
  /* journey: vertical river with every stage readable */
  .jtop .lead{display:none}
  .jdet{display:none}
- .jn{--rkw:36px;justify-items:start;grid-template-columns:var(--rkw) 1fr;column-gap:20px;row-gap:1px;align-items:center;text-align:left;width:min(78vw,330px);color:var(--dim)}
+ .jn{--rkw:38px;justify-items:start;grid-template-columns:var(--rkw) 1fr;column-gap:26px;row-gap:1px;align-items:center;text-align:left;width:min(78vw,330px);color:var(--dim)}
  .jn i{grid-row:1/5}
  .jn small{margin:0;font-size:.72rem}
  .jn b{font-size:1.25rem}
@@ -602,15 +612,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
  .li i{width:56px;height:56px}
  .li b{font-size:.95rem}.li span{font-size:.82rem}
  .lz{width:auto;gap:12px}.lz.pr{flex-direction:row-reverse;text-align:right}
- .lz h3{font-size:1.7rem}.lz p{font-size:.92rem}
+ .lz h3{font-size:1.7rem}.orb.big{--rkw:44px}.lz{gap:22px}.lz p{font-size:.92rem}
  .lla{flex-direction:column;align-items:stretch;gap:12px}
  .lla.pr h4{text-align:right}
  .lla .li{--iw:auto}
  .lgx{font-size:23vw;opacity:.16}
  .lfin{width:calc(100vw - 40px);justify-items:center;text-align:center;gap:8px}
- .lf-tr{width:92px}.lf-k{font-size:2.2rem;transform-origin:center}.lfin h3{font-size:1.45rem}.lf-cp{font-size:.88rem}
- .lrk b{font-size:2.1rem}
- .lgx.hx{display:none}
+ .lf-hero{width:96px}.lfin h3{font-size:1.45rem!important}.lf-cp{font-size:.88rem}
+ .lrk b{font-size:2.1rem}.lrk small,.lrk b{top:-84px}
+ .lbloom{width:150vw}
  #btags{display:none}
  .bsum{font-size:1.25rem!important}.bsum br{display:none}
  .lcp{font-size:.58rem}
@@ -762,8 +772,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
    </figure>
   </div>
   <p class="concl fade" hidden>พูดง่าย ๆ คือ เรียนกับเรา มีโอกาสได้พอร์ตพร้อมยื่น <b>มากกว่าเด็กทั่วไปถึง 3 เท่า</b></p>
-  <div class="sgrid" id="sgrid"></div>
-  <p class="fine" id="stat-note"></p>
  </div>
 </section>
 
@@ -941,7 +949,7 @@ const CONFIG = {
   lineId: '@hamsterhub',                   // [ตัวอย่าง] LINE OA
   statNote: 'ตัวเลขจากรุ่นก่อนของ Hamster Hub ผลลัพธ์ขึ้นกับความตั้งใจของผู้เรียน',
 };
-const IMG = {zero:'{{s_zero}}', hero:'{{s_hero}}', game:'{{s_game}}', pitch:'{{s_pitch}}', stage:'{{s_stage}}', grad:'{{s_grad}}', panic:'{{panic}}', laugh:'{{laugh}}', cheer:'{{cheer}}', pod:'{{pod_cheer}}', ship:'{{ship}}'};
+const IMG = {zero:'{{s_zero}}', hero:'{{s_hero}}', game:'{{s_game}}', pitch:'{{s_pitch}}', stage:'{{s_stage}}', grad:'{{s_grad}}', panic:'{{panic}}', laugh:'{{laugh}}', cheer:'{{cheer}}', pod:'{{pod_cheer}}', ship:'{{ship}}', ob:'{{orb_b}}', os:'{{orb_s}}', og:'{{orb_g}}'};
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -955,20 +963,20 @@ const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), ss=t=>t*t*(3-2*t), lerp=(a,b
 const aiIO='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('vis',e.isIntersecting))):null;
 $$('.ai').forEach(b=>{ aiIO?aiIO.observe(b):b.classList.add('vis'); b.querySelectorAll(':scope > i').forEach(i=>i.remove()); b.insertAdjacentHTML('afterbegin','<em class="glass" aria-hidden="true"><b></b><b></b><b></b><b></b></em>'); });
 const stages=[
-  {n:'Bronze',w:'งานที่ 1',t:'ทำเกมให้สนุกเป็น',p:'เน้นเข้ามาทำเกมสนุกเป็น คุ้นชินเครื่องมือ และฝึกนำเสนอ',c:'#F0A87A'},
-  {n:'Silver',w:'งานที่ 2',t:'ออกแบบเกมให้ขายได้',p:'ออกแบบเกมที่แตกต่าง ขายได้ เข้าใจตลาดเกม และเข้าใจการเก็บ Game Feel',c:'#DCE4F5'},
-  {n:'Gold',w:'งานที่ 3',t:'เกม Scale ใหญ่แบบกลุ่ม',p:'สร้างเกม Scale ใหญ่กว่าเดิมแบบกลุ่ม แบ่งสายและเรียนลึกลงไป มีโอกาสได้เรียนทักษะขั้นสูงอย่าง OOP',c:'#FFD27A',fin:1},
+  {n:'Bronze',o:IMG.ob,w:'Rank 1',t:'ทำเกมให้สนุกเป็น',p:'เน้นเข้ามาทำเกมสนุกเป็น คุ้นชินเครื่องมือ และฝึกนำเสนอ',c:'#F0A87A'},
+  {n:'Silver',o:IMG.os,w:'Rank 2',t:'ออกแบบเกมให้ขายได้',p:'ออกแบบเกมที่แตกต่าง ขายได้ เข้าใจตลาดเกม และเข้าใจการเก็บ Game Feel',c:'#DCE4F5'},
+  {n:'Gold',o:IMG.og,w:'Rank 3',t:'เกม Scale ใหญ่แบบกลุ่ม',p:'สร้างเกม Scale ใหญ่กว่าเดิมแบบกลุ่ม แบ่งสายและเรียนลึกลงไป มีโอกาสได้เรียนทักษะขั้นสูงอย่าง OOP',c:'#FFD27A',fin:1},
 ];
 $('#jz img').src=IMG.zero; $('#jh img').src=IMG.hero;
-$('#jnodes').innerHTML=stages.map((s,i)=>`<button class="jn${s.fin?' fin':''}" type="button" role="tab" aria-selected="false" data-i="${i}" style="--rc:${s.c};--dl:${-i*1.7}s"><i class="orb"></i><small>${s.w}</small><b>${s.n}</b><em>${s.t}</em><span>${s.p}</span></button>`).join('');
+$('#jnodes').innerHTML=stages.map((s,i)=>`<button class="jn${s.fin?' fin':''}" type="button" role="tab" aria-selected="false" data-i="${i}" style="--rc:${s.c};--dl:${-i*1.7}s"><i class="orb"><s><img src="${s.o}" alt=""><img src="${s.o}" alt=""></s></i><small>${s.w}</small><b>${s.n}</b><em>${s.t}</em><span>${s.p}</span></button>`).join('');
 // learn: topics by rank (Stellars from the course board), laid along the ship's lane
 const EMO={'Intro to Game Design':'{{e_gd}}','Unity Tricks':'{{e_unity}}','Level Design':'{{e_level}}','3D Map & Environment':'{{e_map3d}}','Basic AI':'{{e_ai1}}',
  'Game Feel Technique':'{{e_feel}}','Animation':'{{e_anim}}','Camera Direction':'{{e_cam}}','Intermediate AI':'{{e_ai2}}','Pitching Tricks':'{{e_pitch}}',
  'Advance Map Design':'{{e_amap}}','Modelling':'{{e_model}}','Advance Lighting':'{{e_light}}','Advance AI':'{{e_ai3}}','OOP':'{{e_oop}}','Team Management':'{{e_team}}','Work Management':'{{e_work}}'};
 const LZ=[
- {n:'Bronze',c:'#F0A87A',w:'งานที่ 1 · Rank แรก',t:'ทำเกมให้สนุกเป็น คุ้นมือเครื่องมือ',it:[['Intro to Game Design','หลักคิดออกแบบเกมให้สนุก'],['Unity Tricks','ใช้ Unity สร้างเกมได้คล่องมือ'],['Level Design','ออกแบบด่านให้เล่นแล้วอยากไปต่อ'],['3D Map & Environment','สร้างฉากและแผนที่ 3D'],['Basic AI','ทำศัตรูที่คิดเองได้']]},
- {n:'Silver',c:'#DCE4F5',w:'งานที่ 2',t:'ออกแบบเกมให้ขายได้ และเก็บ Game Feel',it:[['Game Feel Technique','เล่นแล้วลื่น มันมือ'],['Animation','ตัวละครขยับแล้วมีชีวิต'],['Camera Direction','คุมกล้องให้เกมดูเป็นหนัง'],['Intermediate AI','AI ฉลาดขึ้น เล่นแล้วท้าทาย'],['Pitching Tricks','พูดนำเสนอให้กรรมการอยากได้']]},
- {n:'Gold',c:'#FFD27A',w:'งานที่ 3 · งานกลุ่ม',t:'เกม Scale ใหญ่ เลือกสายแล้วเรียนลึก',ln:[
+ {n:'Bronze',c:'#F0A87A',w:'Rank 1',o:IMG.ob,t:'ทำเกมให้สนุกเป็น คุ้นมือเครื่องมือ',it:[['Intro to Game Design','หลักคิดออกแบบเกมให้สนุก'],['Unity Tricks','ใช้ Unity สร้างเกมได้คล่องมือ'],['Level Design','ออกแบบด่านให้เล่นแล้วอยากไปต่อ'],['3D Map & Environment','สร้างฉากและแผนที่ 3D'],['Basic AI','ทำศัตรูที่คิดเองได้']]},
+ {n:'Silver',c:'#DCE4F5',w:'Rank 2',o:IMG.os,t:'ออกแบบเกมให้ขายได้ และเก็บ Game Feel',it:[['Game Feel Technique','เล่นแล้วลื่น มันมือ'],['Animation','ตัวละครขยับแล้วมีชีวิต'],['Camera Direction','คุมกล้องให้เกมดูเป็นหนัง'],['Intermediate AI','AI ฉลาดขึ้น เล่นแล้วท้าทาย'],['Pitching Tricks','พูดนำเสนอให้กรรมการอยากได้']]},
+ {n:'Gold',c:'#FFD27A',w:'Rank 3 · งานกลุ่ม',o:IMG.og,t:'เกม Scale ใหญ่ เลือกสายแล้วเรียนลึก',ln:[
    ['สาย Art',[['Advance Map Design','ออกแบบแมพขั้นสูง'],['Modelling','ปั้นโมเดล 3D เอง'],['Advance Lighting','จัดแสงให้ฉากสวย']]],
    ['สาย Developer',[['Advance AI','AI ระดับเกมจริง'],['OOP','เขียนโค้ดเป็นระบบ']]],
    ['สาย Director',[['Team Management','คุมทีมให้ไปทางเดียวกัน'],['Work Management','วางแผนงานให้ทันกำหนด']]]]},
@@ -978,13 +986,13 @@ const LZ=[
   let h=`<div class="lt ln"><p class="eyebrow">เนื้อหาตลอด 2 เดือน</p><h2 class="h2" id="lr-h">2 เดือนนี้<br>ได้เรียนอะไรบ้าง</h2><p class="lead">ครบทุกหัวข้อเท่าคอร์สเต็ม ไล่ตาม Rank ตั้งแต่ทำเกมแรก จนแยกสายเรียนลึกในงานกลุ่ม</p></div>`, b='';
   LZ.forEach((z,zi)=>{
     b+=`<div class="lgx" style="--c:${z.c}">${z.n.toUpperCase()}</div>`;
-    h+=`<div class="lz ln" style="--c:${z.c}"><i class="orb big" style="--rc:${z.c};--dl:${-zi*.9}s"></i><div><small>${z.w}</small><h3>${z.n}</h3><p>${z.t}</p></div></div>`;
+    h+=`<div class="lz ln" style="--c:${z.c}"><i class="orb big" style="--dl:${-zi*1.7}s"><s><img src="${z.o}" alt=""><img src="${z.o}" alt=""></s></i><div><small>${z.w}</small><h3>${z.n}</h3><p>${z.t}</p></div></div>`;
     if(z.it) h+=z.it.map(it=>li(it,z.c)).join('');
     else h+=z.ln.map(([t,its])=>`<div class="lla" style="--c:${z.c}"><h4 class="ln">${t}</h4>${its.map(it=>li(it,z.c)).join('')}</div>`).join('');
   });
-  b+=`<div class="lgx hx" style="--c:#FFD27A">HERO</div>`;
-  h+=`<div class="lfin ln"><img class="lf-tr" src="{{e_trophy}}" alt="ถ้วยรางวัล"><p class="lf-k">ZERO <span>→</span> HERO</p><h3>ครบ 2 เดือน<br><em>พอร์ตเกม 3 งาน พร้อมยื่นมหาลัย</em></h3><p class="lf-cp"><b>5/5</b> Checkpoint ผ่านครบ · ได้ Feedback ทุกช่วง</p></div>`;
-  h+=`<div class="lrk" aria-hidden="true"><small>RANK UP</small><b></b></div>`;
+  b+=`<img class="lbloom" src="{{bloom}}" alt="">`;
+  h+=`<div class="lportal" aria-hidden="true"><i class="orb"><s><img src="${IMG.og}" alt=""><img src="${IMG.og}" alt=""></s></i></div><div class="lfin ln"><img class="lf-hero" src="${IMG.hero}" alt="หนูฮีโร่ใส่ผ้าคลุม"><p class="lf-k">ZERO → HERO</p><h3>ครบ 2 เดือน<br><em>พอร์ตเกม 3 งาน พร้อมยื่นมหาลัย</em></h3><p class="lf-cp"><b>5/5</b> Checkpoint ผ่านครบ · ได้ Feedback ทุกช่วง</p></div>`;
+  h+=`<div class="lrk" aria-hidden="true"><img alt=""><small>RANK UP</small><b></b></div>`;
   for(let c=1;c<=5;c++) h+=`<div class="lcp" aria-hidden="true">CHECKPOINT ${c}</div>`;
   $('#lworld').innerHTML=h; $('#lback').innerHTML=b; $('#ship img').src=IMG.ship;
 })();
@@ -997,9 +1005,7 @@ const FAQ=[
   [IMG.cheer,'หนูดีใจ','ต้องจ่ายเงินตอนจองเลยไหม','<p>ยังไม่ต้อง กรอกฟอร์มแล้วทีม Hamster Hub จะทัก LINE ไปคุยเป้ามหาลัยกับตารางเรียนก่อน จ่ายงวดแรกหลังคุยแล้ว</p>'],
 ];
 $('#faq').innerHTML=FAQ.map((f,i)=>`<details class="fq fade"${i===0?' open':''}><summary><img src="${f[0]}" alt="${f[1]}" loading="lazy"><span>${f[2]}</span><i aria-hidden="true"></i></summary><div class="fa">${f[3]}</div></details>`).join('');
-$('#sgrid').innerHTML=[{v:5,suf:'+',t:'Hero ที่ต้องนำเสนอผ่านก่อนจบคอร์ส'},{v:24,suf:'',t:'ครั้งที่ได้เรียนกับเทรนเนอร์ใน 8 สัปดาห์'},{v:10,suf:'',t:'หัวข้อ Stellars ครบเท่าคอร์ส 5 เดือน'}]
-  .map(s=>`<div class="fade"><b class="${s.tbd?'tbd':''}">${typeof s.v==='number'?`<span class="cnt" data-v="${s.v}">${s.v}</span>`:s.v}${s.suf}</b><p>${s.t}</p></div>`).join('');
-$('#stat-note').textContent=CONFIG.statNote;
+
 $('#ogrid').innerHTML=[[IMG.game,'หนูถือจอยเกม','เกมที่เล่นได้จริง','ขึ้น itch.io มีลิงก์ให้กรรมการกดเล่นได้ทันที'],[IMG.pitch,'หนูชี้กระดานพรีเซนต์','Pitch Deck และพอร์ต','แก้เนื้อหาพอร์ตกับเทรนเนอร์จนพร้อมส่ง'],[IMG.stage,'หนูพูดบนเวที','นำเสนอผ่าน Hero 5 คนขึ้นไป','พูดรู้เรื่อง ไม่สั่นตอนเข้าห้องสัมภาษณ์'],[IMG.grad,'หนูสามตัวใส่หมวกรับปริญญา','อาจารย์มหาลัยเห็นงานแล้ว','ฟังผลงานทุก 2 สัปดาห์ พร้อมซ้อมสัมภาษณ์']]
   .map(o=>`<div class="o fade"><img src="${o[0]}" alt="${o[1]}"><h3>${o[2]}</h3><p>${o[3]}</p></div>`).join('');
 $('#line-id').textContent=CONFIG.lineId;
@@ -1224,11 +1230,10 @@ function jDrawV(now){
 // ---- learn: the ship flies a light lane; the camera follows it (ref: scroll-driven road) ----
 const ROUT=$('#routes'), LW=$('#lworld'), LBK=$('#lback'), LCV=$('#lcv'), lx=LCV.getContext('2d'), SHIP=$('#ship'), LST=ROUT.querySelector('.stage'), LRK=$('#lworld .lrk'), LFL=document.createElement('div');
 LST.appendChild(LRK); LFL.className='lflash'; LFL.setAttribute('aria-hidden','true'); LST.appendChild(LFL);
-const PT=[], SWV=[];
-function lBurst(x,y,n,cols,sp){ for(let i=0;i<n;i++){ const a=Math.random()*Math.PI*2, v=sp*(.3+Math.random()*.7); PT.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-sp*.3,l:0,L:1+Math.random()*1.4,c:cols[i%cols.length],s:2.5+Math.random()*3.5,r:Math.random()*6,vr:(Math.random()-.5)*14,k:Math.random()<.55}); } }
-function lRankUp(z,P,now){ const c=LZ[z].c; LRK.querySelector('b').textContent=LZ[z].n.toUpperCase(); LRK.style.setProperty('--c',c);
-  LRK.style.left=(LP.mob?P.x:LP.sx)+'px'; LRK.style.top=(LP.sy-(LP.mob?96:130))+'px'; LRK.classList.remove('go'); void LRK.offsetWidth; LRK.classList.add('go');
-  SWV.push({t0:now,x:P.x,y:P.y,c,R:LP.mob?150:260}); if(!reduce) lBurst(P.x,P.y,LT?24:46,[c,'#ffffff'],LP.mob?380:560); }
+const PT=[];
+function lMotes(x,y,n,rad){ for(let i=0;i<n;i++){ const a=Math.random()*Math.PI*2, rr=Math.random()*rad; PT.push({x:x+Math.cos(a)*rr,y:y+Math.sin(a)*rr,vx:Math.cos(a)*(10+Math.random()*30),vy:-10-Math.random()*40,l:0,L:2.2+Math.random()*2.4,c:Math.random()<.7?'255,214,140':'120,240,210',s:.8+Math.random()*1.8,w:Math.random()*6}); } }
+function lRankUp(z,P,now){ const c=LZ[z].c; LRK.querySelector('b').textContent=LZ[z].n.toUpperCase(); LRK.querySelector('img').src=LZ[z].o; LRK.style.setProperty('--c',c);
+  LRK.style.left=(LP.mob?P.x:LP.sx)+'px'; LRK.style.top=LP.sy+'px'; LRK.classList.remove('go'); void LRK.offsetWidth; LRK.classList.add('go'); }
 let LP=null;
 const LRD=document.createElement('canvas'); LRD.setAttribute('aria-hidden','true'); LBK.appendChild(LRD); const lr=LRD.getContext('2d');
 // the static road (bed, dashes, faint stops) is drawn once into a world-space layer that moves with the compositor
@@ -1251,7 +1256,7 @@ function lNear(X,Y,n,x,y){ let bi=0,bd=1e18; for(let i=0;i<n;i+=2){ const d=(X[i
 function lLayout(){
   const st=ROUT.querySelector('.stage'), W=innerWidth, H=st.clientHeight||innerHeight, mob=isMob();
   if(LP&&LP.W===W&&LP.mob===mob&&Math.abs(LP.H-H)<140&&LP.fontsOK===!!document.fonts&&document.fonts.status==='loaded') return;
-  const kids=[...LW.children], T=LW.querySelector('.lt'), Z=$$('#lworld .lz'), FIN=LW.querySelector('.lfin'), CP=$$('#lworld .lcp'), G=$$('#lback .lgx:not(.hx)'), GH=$('#lback .hx');
+  const kids=[...LW.children], T=LW.querySelector('.lt'), Z=$$('#lworld .lz'), FIN=LW.querySelector('.lfin'), CP=$$('#lworld .lcp'), G=$$('#lback .lgx'), LPO=LW.querySelector('.lportal'), LBL=LBK.querySelector('.lbloom');
   const zItems=[...Array(3)].map(()=>[]); let zi=-1; kids.forEach(el=>{ if(el.classList.contains('lz')) zi++; else if(zi>=0&&(el.classList.contains('li')||el.classList.contains('lla'))) zItems[zi].push(el); });
   const X=[],Y=[]; const add=(x,y)=>{X.push(x);Y.push(y);};
   const line=(x0,y0,x1,y1)=>{ const n=Math.max(1,Math.ceil(Math.hypot(x1-x0,y1-y0)/5)); for(let i=1;i<=n;i++) add(x0+(x1-x0)*i/n,y0+(y1-y0)*i/n); };
@@ -1276,7 +1281,7 @@ function lLayout(){
     lb.forEach((el,i)=>{ const yl=4*r+(i-1)*dl; const h=el.offsetHeight, L0=f0+fw+.02*W; pos(el,L0,yl-40-h);
       const hd=el.querySelector('h4'); rv.push({el:hd,x:L0+hd.offsetLeft+20,y:yl});
       el.querySelectorAll('.li').forEach(it=>{ const x=L0+it.offsetLeft+it.offsetWidth/2; rv.push({el:it,x,y:yl,cx:x,cy:yl-40,c:LZ[2].c}); }); });
-    pos(FIN,Lr+70,4*r-FIN.offsetHeight/2); pos(GH,Lr+.06*W,4*r-.27*H);
+    pos(FIN,Lr+150,4*r-FIN.offsetHeight/2);
     [[Lr-.07*W,0],[Lr-a0-1.5*gap,2*r],[.12*W,2*r],[f0-.05*W,4*r],[m1+.07*W,4*r]].forEach(p=>cps.push({x:p[0],y:p[1]}));
     G.forEach((g,i)=>pos(g,i===0?a0+1.6*gap:i===1?Lr-a0-1.6*gap:Lr*.55,rows[i]+(i===2?.37*H:-.31*H)));
     Z.forEach((z,i)=>rv.push({el:z,x:i===1?Lr-.08*W-z.offsetWidth/2:.08*W+z.offsetWidth/2,y:rows[i]}));
@@ -1295,12 +1300,13 @@ function lLayout(){
       y+=h+gy; side=-side; });
     ctrl.push([cx,y+6]);
     for(let i=1;i<ctrl.length;i++){ const [x0,y0]=ctrl[i-1],[x1,y1]=ctrl[i], n=Math.max(1,Math.ceil((y1-y0)/4)); for(let q=1;q<=n;q++){ const t=q/n; add(x0+(x1-x0)*(1-Math.cos(Math.PI*t))/2,y0+(y1-y0)*t); } }
-    FIN.style.width=(W-40)+'px'; pos(FIN,20,y+40); pos(GH,W/2,y-H*.2);
+    FIN.style.width=(W-40)+'px'; pos(FIN,20,y+120);
     const gapY=i=>(nodes[i].bot+nodes[i+1].top)/2, ni=k=>nodes.findIndex(o=>o.el===k);
     const lastB=ni(zItems[0][4]), s2=ni(zItems[1][1]), lastS=ni(zItems[1][4]), gH=ni(Z[2]), l1=ni(zItems[2][1]);
     [gapY(lastB),gapY(s2),gapY(lastS),gapY(gH),gapY(l1)].forEach(yy=>{ let i=0; while(i<Y.length-1&&Y[i]<yy) i++; cps.push({x:X[i],y:Y[i]}); });
     LP={sx:0,sy:.44*H,ahead:.42*H,k:1.05};
   }
+  pos(LPO,X[X.length-1],Y[Y.length-1]); pos(LBL,X[X.length-1],Y[Y.length-1]);
   rv.push({el:T,x:X[0],y:Y[0]},{el:FIN,x:X[X.length-1],y:Y[Y.length-1]});
   const n=X.length, Xf=new Float32Array(X), Yf=new Float32Array(Y), C=new Float32Array(n); for(let i=1;i<n;i++) C[i]=C[i-1]+Math.hypot(X[i]-X[i-1],Y[i]-Y[i-1]);
   const L=C[n-1];
@@ -1324,10 +1330,9 @@ function lDraw(now){
   const s=LP.s, P=lAt(s), W=LP.W, H=LP.H, t=reduce?0:now/1000;
   const zc=s>=LP.zs[1]?2:s>=LP.zs[0]?1:0; if(LP.zc!=null&&zc>LP.zc) lRankUp(zc,P,now); LP.zc=zc;
   const arrived=s>=LP.L-2; if(arrived&&!LP.fin){ LP.fin=true; LP.ft=now; LST.classList.add('fin'); SHIP.classList.add('fin');
-    const fx0=LP.X[LP.n-1], fy0=LP.Y[LP.n-1]; [0,180,380].forEach((dd,k)=>SWV.push({t0:now+dd,x:fx0,y:fy0,c:['#FFD27A','#5FF2C8','#ffffff'][k],R:(LP.mob?220:420)*(1+k*.25)}));
-    if(!reduce) lBurst(fx0,fy0,LT?70:150,['#FFD27A','#F0A87A','#DCE4F5','#5FF2C8','#FF8FA6','#9a7bff'],LP.mob?620:900); }
+    if(!reduce) lMotes(LP.X[LP.n-1],LP.Y[LP.n-1],LT?26:60,LP.mob?60:110); }
   else if(LP.fin&&s<LP.L-60){ LP.fin=false; LST.classList.remove('fin'); SHIP.classList.remove('fin'); }
-  LP.fs=lerp(LP.fs,LP.fin?1.22:1,.08);
+  LP.fs=lerp(LP.fs,LP.fin?1.1:1,.06);
   const sx=LP.mob?P.x:LP.sx, sy=LP.sy, ox=sx-P.x, oy=sy-P.y, tr=`translate3d(${ox.toFixed(1)}px,${oy.toFixed(1)}px,0)`;
   LW.style.transform=tr; LBK.style.transform=tr;
   let da=P.ang-LP.ang; da=Math.atan2(Math.sin(da),Math.cos(da)); LP.ang+=reduce?da:da*.2;
@@ -1355,21 +1360,12 @@ function lDraw(now){
   for(const c of LP.cps){ if(!c.on||c.x<v[0]||c.x>v[1]||c.y<v[2]||c.y>v[3]) continue; const nx2=-Math.sin(c.a)*RW*.62, ny2=Math.cos(c.a)*RW*.62;
     lx.beginPath(); lx.moveTo(c.x-nx2,c.y-ny2); lx.lineTo(c.x+nx2,c.y+ny2); lx.lineWidth=c.on?3:2; lx.strokeStyle=c.on?'#5FF2C8':'rgba(255,255,255,.28)'; lx.stroke();
     if(c.on&&!LT){ lx.globalCompositeOperation='lighter'; lx.globalAlpha=.25; lx.lineWidth=12; lx.stroke(); lx.globalAlpha=1; lx.globalCompositeOperation='source-over'; } }
-  // finish portal
-  const fx=X[n-1], fy=Y[n-1]; if(fx>v[0]&&fx<v[1]&&fy>v[2]&&fy<v[3]){ const k=clamp((s-(LP.L-LP.ahead))/LP.ahead), fk=LP.fin?clamp((now-LP.ft)/900):0, pr=(26+Math.sin(t*2)*3)*(1+fk*.9);
-    lx.globalCompositeOperation='lighter'; const g=lx.createRadialGradient(fx,fy,0,fx,fy,pr*2.4); g.addColorStop(0,`rgba(255,226,160,${.35+k*.5})`); g.addColorStop(1,'rgba(255,210,122,0)'); lx.fillStyle=g; lx.fillRect(fx-pr*2.4,fy-pr*2.4,pr*4.8,pr*4.8);
-    lx.beginPath(); lx.arc(fx,fy,pr,0,7); lx.strokeStyle=`rgba(255,214,140,${.4+k*.6})`; lx.lineWidth=2.4; lx.stroke();
-    if(fk>0){ lx.save(); lx.translate(fx,fy); lx.rotate(t*.35); for(let q=0;q<12;q++){ lx.rotate(Math.PI/6); const rg=lx.createLinearGradient(pr,0,pr*(3.4+fk),0); rg.addColorStop(0,`rgba(255,226,160,${.5*fk})`); rg.addColorStop(1,'rgba(255,226,160,0)'); lx.fillStyle=rg; lx.beginPath(); lx.moveTo(pr*.9,-3); lx.lineTo(pr*(3.4+fk+(q%2)*.8),0); lx.lineTo(pr*.9,3); lx.fill(); } lx.restore();
-      if(!reduce&&!LT&&Math.random()<.5) lBurst(fx+(Math.random()-.5)*pr*2,fy+(Math.random()-.5)*pr*2,1,['#FFD27A','#ffffff'],60); }
-    lx.globalCompositeOperation='source-over'; }
-  // shockwaves + particles
+  // drifting light motes around the portal once arrived (soft, upward, like embers)
+  if(LP.fin&&!reduce&&Math.random()<(LT?.25:.6)) lMotes(X[n-1],Y[n-1],1,LP.mob?70:120);
   lx.globalCompositeOperation='lighter';
-  for(let i=SWV.length-1;i>=0;i--){ const w=SWV[i], kk=(now-w.t0)/900; if(kk<0) continue; if(kk>=1){ SWV.splice(i,1); continue; } lx.beginPath(); lx.arc(w.x,w.y,w.R*eo(kk),0,7); lx.strokeStyle=w.c; lx.globalAlpha=(1-kk)*.8; lx.lineWidth=2+6*(1-kk); lx.stroke(); }
-  lx.globalAlpha=1;
-  for(let i=PT.length-1;i>=0;i--){ const p=PT[i]; p.l+=ldt; if(p.l>=p.L){ PT.splice(i,1); continue; } p.vx*=Math.pow(.2,ldt); p.vy=p.vy*Math.pow(.2,ldt)+520*ldt; p.x+=p.vx*ldt; p.y+=p.vy*ldt; p.r+=p.vr*ldt;
-    if(p.x<v[0]||p.x>v[1]||p.y<v[2]||p.y>v[3]) continue; const al=1-p.l/p.L; lx.globalAlpha=al; lx.fillStyle=p.c;
-    if(p.k){ lx.save(); lx.translate(p.x,p.y); lx.rotate(p.r); lx.fillRect(-p.s,-p.s*.45,p.s*2,p.s*.9); lx.restore(); } else { lx.beginPath(); lx.arc(p.x,p.y,p.s*.55,0,7); lx.fill(); } }
-  lx.globalAlpha=1; lx.globalCompositeOperation='source-over';
+  for(let i=PT.length-1;i>=0;i--){ const p=PT[i]; p.l+=ldt; if(p.l>=p.L){ PT.splice(i,1); continue; } p.w+=ldt*2; p.vx=p.vx*Math.pow(.5,ldt)+Math.sin(p.w)*14*ldt; p.vy=p.vy*Math.pow(.6,ldt)-18*ldt; p.x+=p.vx*ldt; p.y+=p.vy*ldt;
+    if(p.x<v[0]||p.x>v[1]||p.y<v[2]||p.y>v[3]) continue; const k=p.l/p.L, al=Math.sin(Math.PI*k)*.9; lx.fillStyle=`rgba(${p.c},${(al*.22).toFixed(3)})`; lx.beginPath(); lx.arc(p.x,p.y,p.s*3.2,0,7); lx.fill(); lx.fillStyle=`rgba(${p.c},${al.toFixed(3)})`; lx.beginPath(); lx.arc(p.x,p.y,p.s,0,7); lx.fill(); }
+  lx.globalCompositeOperation='source-over';
   // engine exhaust behind the ship (world space)
   lx.globalCompositeOperation='lighter';
   const ex=P.x-Math.cos(LP.ang)*LP.sw*.47+nx*bob, ey=P.y-Math.sin(LP.ang)*LP.sw*.47+ny*bob, mv=clamp(Math.abs(tgt-LP.s)/60+.35,0,1.2);
@@ -1464,62 +1460,77 @@ function bDraw(now){
 }
 addEventListener('load',()=>{ (window.requestIdleCallback||setTimeout)(loadThree,{timeout:1500}); });
 
-// ---- stats: 3D data bars on a dark tabletop (ref: audio visualiser), honest heights on a 0–60% axis ----
+// ---- stats: 3D ridgeline "waterfall" (ref: audio visualiser). The front line is the data: exact 50% and 15% peaks on a 0–60% scale ----
 const SVS=$('#vs'), SCV=document.createElement('canvas'), S3W=document.createElement('div'); SCV.id='scv'; SCV.setAttribute('aria-hidden','true'); S3W.className='s3w'; S3W.setAttribute('aria-hidden','true'); SVS.prepend(SCV); SVS.appendChild(S3W);
 let SG=null, sFr=0;
 function sInit(){ try{
   const T=THREE, R=new T.WebGLRenderer({canvas:SCV,alpha:true,antialias:!LITE});
-  R.setPixelRatio(LITE?Math.min(1.25,devicePixelRatio||1):Math.min(1.75,devicePixelRatio||1)); R.outputEncoding=T.sRGBEncoding; R.toneMapping=T.ACESFilmicToneMapping; R.setClearColor(0,0);
-  const S=new T.Scene(), cam=new T.PerspectiveCamera(30,1,.1,80), CL=h=>new T.Color(h).convertSRGBToLinear();
-  S.fog=new T.Fog(0x05202a,12,30); S.add(new T.HemisphereLight(0xaee6ff,0x0a0f2a,.85)); const dl=new T.DirectionalLight(0xffffff,1.15); dl.position.set(-4,8,6); S.add(dl);
-  const HM=4.2, val=v=>v/60*HM, NS=LITE?9:13, SWD=.07, GP=.035, BW=NS*SWD+(NS-1)*GP;
-  const geo=new T.BoxGeometry(SWD,1,.95); geo.translate(0,.5,0);
-  const bar=(x,v,col,em)=>{ const m=new T.MeshStandardMaterial({color:CL(col),emissive:CL(col),emissiveIntensity:em,roughness:.32,metalness:.2}); const im=new T.InstancedMesh(geo,m,NS); im.position.x=x; S.add(im); return {im,h:val(v),v,x}; };
-  const bars=[bar(-1.2,50,0x3ff0c2,.55),bar(1.2,15,0x8e94b8,.1)];
-  // dotted tabletop
-  const dp=[]; for(let i=0;i<46;i++) for(let j=0;j<26;j++) dp.push(-6.5+i*.29,0,-8+j*.4); const dg=new T.BufferGeometry(); dg.setAttribute('position',new T.Float32BufferAttribute(dp,3));
-  S.add(new T.Points(dg,new T.PointsMaterial({color:CL(0x9fb6d8),size:.03,transparent:true,opacity:.55,depthWrite:false})));
-  // glow pools
-  const gc=document.createElement('canvas'); gc.width=gc.height=128; const gx=gc.getContext('2d'), gg=gx.createRadialGradient(64,64,0,64,64,64); gg.addColorStop(0,'rgba(255,255,255,1)'); gg.addColorStop(1,'rgba(255,255,255,0)'); gx.fillStyle=gg; gx.fillRect(0,0,128,128);
-  const GLOW=new T.CanvasTexture(gc); [[-1.2,0x3ff0c2,.7],[1.2,0x8e94b8,.25]].forEach(([x,c,o])=>{ const m=new T.Mesh(new T.PlaneGeometry(3.2,2.2),new T.MeshBasicMaterial({map:GLOW,color:CL(c),transparent:true,opacity:o,blending:T.AdditiveBlending,depthWrite:false,toneMapped:false})); m.rotation.x=-Math.PI/2; m.position.set(x,.005,0); S.add(m); });
-  // axis: 20/40/60 % lines on the back edge
-  const ax=new T.LineBasicMaterial({color:CL(0xffffff),transparent:true,opacity:.14}); [20,40,60].forEach(v=>{ S.add(new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(-2.3,val(v),-.6),new T.Vector3(2.3,val(v),-.6)]),ax)); });
-  // the gap between the two: level lines + bracket
-  const dm=new T.LineDashedMaterial({color:CL(0xffd27a),dashSize:.08,gapSize:.07,transparent:true,opacity:.85});
-  const dln=pts=>{ const l=new T.Line(new T.BufferGeometry().setFromPoints(pts.map(p=>new T.Vector3(...p))),dm); l.computeLineDistances(); S.add(l); return l; };
-  const lv=[dln([[-1.2+BW/2,val(50),0],[.05,val(50),0]]),dln([[1.2-BW/2,val(15),0],[-.05,val(15),0]]),dln([[0,val(15),0],[0,val(50),0]])];
-  // ridgelines far behind: ambient "audio" field, not data
-  const NL=LITE?12:22, NP=LITE?70:110, rl=[];
-  for(let j=0;j<NL;j++){ const g=new T.BufferGeometry(), a=new Float32Array(NP*3); for(let i=0;i<NP;i++){ a[i*3]=-6+12*i/(NP-1); a[i*3+2]=-1.6-j*.3; } g.setAttribute('position',new T.BufferAttribute(a,3));
-    const c=new T.Color(0x5ff2c8).lerp(new T.Color(0x8b6bff),j/NL).convertSRGBToLinear(); const l=new T.Line(g,new T.LineBasicMaterial({color:c,transparent:true,opacity:.62-.4*j/NL})); S.add(l); rl.push(l); }
-  // labels (HTML, projected)
+  R.setPixelRatio(LITE?Math.min(1.25,devicePixelRatio||1):Math.min(1.75,devicePixelRatio||1)); R.setClearColor(0,0);
+  const S=new T.Scene(), cam=new T.PerspectiveCamera(32,1,.1,90);
+  const HM=3.4, val=v=>v/60*HM, X0=-4.8, X1=4.8, NP=LITE?110:190, NR=LITE?16:30, DZ=.3, PU=-1.6, PT=1.6, SIG=.48;
+  const g=(x,c)=>Math.exp(-((x-c)*(x-c))/(2*SIG*SIG)), shape=x=>50*g(x,PU)+15*g(x,PT);
+  const XS=new Float32Array(NP), MIX=new Float32Array(NP); for(let i=0;i<NP;i++){ XS[i]=X0+(X1-X0)*i/(NP-1); MIX[i]=ss(clamp((XS[i]+.5)/1)); }
+  const mint=new T.Color(0x5ff2c8), grey=new T.Color(0x9aa2c8), vio=new T.Color(0x7b5cff);
+  const rows=[];
+  for(let j=0;j<NR;j++){ const z=-j*DZ;
+    // invisible occluder: hides the lines behind, lets the page background show through
+    const fg=new T.BufferGeometry(), fp=new Float32Array(NP*2*3), idx=[];
+    for(let i=0;i<NP;i++){ fp[i*6]=XS[i]; fp[i*6+2]=z; fp[i*6+3]=XS[i]; fp[i*6+4]=-.02; fp[i*6+5]=z; if(i<NP-1){ const a=i*2; idx.push(a,a+1,a+2,a+1,a+3,a+2); } }
+    fg.setAttribute('position',new T.BufferAttribute(fp,3)); fg.setIndex(idx);
+    const fm=new T.Mesh(fg,new T.MeshBasicMaterial({colorWrite:false,side:T.DoubleSide})); fm.renderOrder=0; S.add(fm);
+    const lg=new T.BufferGeometry(), lp=new Float32Array(NP*3), lc=new Float32Array(NP*3), fade=1-j/NR;
+    for(let i=0;i<NP;i++){ lp[i*3]=XS[i]; lp[i*3+2]=z; const c=mint.clone().lerp(grey,MIX[i]).lerp(vio,Math.min(1,j/NR*1.3)); lc[i*3]=c.r; lc[i*3+1]=c.g; lc[i*3+2]=c.b; }
+    lg.setAttribute('position',new T.BufferAttribute(lp,3)); lg.setAttribute('color',new T.BufferAttribute(lc,3));
+    const lm=new T.Line(lg,new T.LineBasicMaterial({vertexColors:true,transparent:true,opacity:j?(.18+.62*fade*fade):1})); lm.renderOrder=1; S.add(lm);
+    rows.push({fp,fg,lp,lg,lm,z,j});
+  }
+  // the data line glows: thick ribbon + soft fill underneath (front row only)
+  const rib=(th,op)=>{ const gm=new T.BufferGeometry(), p=new Float32Array(NP*2*3), c=new Float32Array(NP*2*3), idx=[];
+    for(let i=0;i<NP;i++){ const col=mint.clone().lerp(grey,MIX[i]); for(const k of [0,1]){ const o=(i*2+k)*3; p[o]=XS[i]; p[o+2]=.002; c[o]=col.r; c[o+1]=col.g; c[o+2]=col.b; } if(i<NP-1){ const a=i*2; idx.push(a,a+1,a+2,a+1,a+3,a+2); } }
+    gm.setAttribute('position',new T.BufferAttribute(p,3)); gm.setAttribute('color',new T.BufferAttribute(c,3)); gm.setIndex(idx);
+    const m=new T.Mesh(gm,new T.MeshBasicMaterial({vertexColors:true,transparent:true,opacity:op,blending:T.AdditiveBlending,depthWrite:false,side:T.DoubleSide})); m.renderOrder=2; S.add(m); return {p,gm,th}; };
+  const ribs=[rib(.035,1),rib(.16,.22)];
+  const fillM=new T.ShaderMaterial({transparent:true,depthWrite:false,depthTest:false,blending:T.AdditiveBlending,side:T.DoubleSide,uniforms:{h:{value:val(50)}},
+    vertexShader:'varying float vy; varying float vx; void main(){ vy=position.y; vx=position.x; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }',
+    fragmentShader:'uniform float h; varying float vy; varying float vx; void main(){ float k=clamp(vy/h,0.,1.); vec3 a=vec3(.37,.95,.78), b=vec3(.6,.64,.78); vec3 c=mix(a,b,smoothstep(-.5,.5,vx)); gl_FragColor=vec4(c*(.07+.42*pow(k,1.5)),1.); }'});
+  const fill=new T.Mesh(rows[0].fg,fillM); fill.renderOrder=2; S.add(fill);
+  // floor dots + soft pools under the peaks
+  const dp=[]; for(let i=0;i<54;i++) for(let j=0;j<30;j++) dp.push(X0-.8+i*.2,0,1.2-j*.34); const dg=new T.BufferGeometry(); dg.setAttribute('position',new T.Float32BufferAttribute(dp,3));
+  S.add(new T.Points(dg,new T.PointsMaterial({color:0x6f86a8,size:.025,transparent:true,opacity:.5,depthWrite:false})));
+  // scale guides on the front plane + the gap bracket
+  const gm2=new T.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.1}); [20,40,60].forEach(v=>S.add(new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(X0,val(v),.25),new T.Vector3(X1,val(v),.25)]),gm2)));
+  const dm=new T.LineDashedMaterial({color:0xffd27a,dashSize:.08,gapSize:.07,transparent:true,opacity:0});
+  const dln=pts=>{ const l=new T.Line(new T.BufferGeometry().setFromPoints(pts.map(p=>new T.Vector3(...p))),dm); l.computeLineDistances(); l.renderOrder=3; S.add(l); };
+  dln([[PU,val(50),.3],[0,val(50),.3]]); dln([[PT,val(15),.3],[0,val(15),.3]]); dln([[0,val(15),.3],[0,val(50),.3]]);
   const mk=(c,h)=>{ const e=document.createElement('div'); e.className='s3l '+c; e.innerHTML=h; S3W.appendChild(e); return e; };
-  const L={vu:mk('s3v us','<span>0</span>%'),vt:mk('s3v th','<span>0</span>%'),nu:mk('s3n us','เรียนกับ<br>Hamster Hub'),nt:mk('s3n th','เด็กทั่วไป<br>ที่ไม่ได้เรียน'),x:mk('s3x','มากกว่า 3 เท่า'),a:[20,40,60].map(v=>mk('s3a',v+'%'))};
-  SG={T,R,S,cam,bars,rl,L,lv,val,NS,SWD,GP,BW,m4:new T.Matrix4(),v:new T.Vector3(),rise:-1,w:0,h:0};
+  const L={vu:mk('s3v us','<span>0</span>%'),vt:mk('s3v th','<span>0</span>%'),nu:mk('s3n us','เรียนกับ<br>Hamster Hub'),nt:mk('s3n th','เด็กทั่วไป<br>ที่ไม่ได้เรียน'),x:mk('s3x','มากกว่า 3 เท่า'),a:[0,20,40,60].map(v=>mk('s3a',v+'%'))};
+  SG={T,R,S,cam,rows,ribs,fillM,dm,L,val,shape,XS,NP,NR,PU,PT,X0,v:new T.Vector3(),w:0,h:0,last:-1};
   SVS.classList.add('g3'); sSize(); cachePos();
  }catch(e){ console.warn('stats scene',e); SG=null; } }
 function sSize(){ if(!SG) return; const W=SCV.clientWidth, H=SCV.clientHeight; if(!W||!H) return; SG.w=W; SG.h=H; SG.R.setSize(W,H,false); SG.cam.aspect=W/H; SG.cam.updateProjectionMatrix();
-  const tn=Math.tan(SG.cam.fov*Math.PI/360); SG.d=Math.max(4.9/(2*tn)/.8,5.6/(2*tn*SG.cam.aspect)/.86); }
+  const tn=Math.tan(SG.cam.fov*Math.PI/360); SG.d=Math.max((SG.cam.aspect<1.25?7.6:10.4)/(2*tn*SG.cam.aspect)/.9,5.2/(2*tn)/.62); }
 const eob=x=>{ const c1=1.5,c3=c1+1; return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2); };
 function sDraw(now){ if(!SG) return; const r=RT(SVS); if(r.bottom<-80||r.top>innerHeight+80) return; if(LT&&(++sFr&1)) return;
-  const {cam,bars,L}=SG, t=reduce?0:now/1000, sp=STATS._vp||0, q=clamp((innerHeight-r.top)/(innerHeight+r.height)), mob=isMob();
-  const az=lerp(-.6,.38,q)+(mob?0:mx*.25), el=lerp(.16,.42,q)-(mob?0:my*.1), d=SG.d;
-  cam.position.set(Math.sin(az)*Math.cos(el)*d,1.7+Math.sin(el)*d,Math.cos(az)*Math.cos(el)*d); cam.lookAt(0,1.75,-.3);
-  // bars rise slat by slat (exact height once settled)
-  if(sp!==SG.rise){ SG.rise=sp; bars.forEach((b,bi)=>{ for(let i=0;i<SG.NS;i++){ const k=reduce?1:clamp(sp*1.5-i*.035-bi*.08), h=Math.max(.0001,b.h*(k>=1?1:eob(k))); SG.m4.makeScale(1,h,1); SG.m4.setPosition(-SG.BW/2+SG.SWD/2+i*(SG.SWD+SG.GP),0,0); b.im.setMatrixAt(i,SG.m4); } b.im.instanceMatrix.needsUpdate=true; }); }
-  SG.lv.forEach(l=>l.material.opacity=.85*clamp((sp-.85)/.15));
-  // ambient ridgelines
-  if(!reduce) SG.rl.forEach((l,j)=>{ const a=l.geometry.attributes.position, n=a.count, f=1-j/SG.rl.length*.55; for(let i=0;i<n;i++){ const x=a.array[i*3]; let y=0;
-      for(let k=0;k<3;k++){ const c=Math.sin(t*.32+j*.41+k*2.1)*3.3, w=.35+.25*k, hgt=(.7-.18*k)*(.6+.4*Math.sin(t*1.1+j*.7+k)); y+=hgt*Math.exp(-((x-c)*(x-c))/w); }
-      a.array[i*3+1]=y*f*1.05+.02; } a.needsUpdate=true; });
+  const {cam,rows,ribs,L,XS,NP,NR}=SG, t=reduce?0:now/1000, sp=STATS._vp||0, q=clamp((innerHeight-r.top)/(innerHeight+r.height)), mob=isMob();
+  const az=lerp(-.55,.32,q)+(mob?0:mx*.22), el=lerp(.14,.5,q)-(mob?0:my*.08), d=SG.d;
+  cam.position.set(Math.sin(az)*Math.cos(el)*d,1.2+Math.sin(el)*d,-2.6+Math.cos(az)*Math.cos(el)*d); cam.lookAt(0,1.85,-2.6);
+  // rows: the front row is the data (it rises once, then holds exact); rows behind carry its history and breathe
+  for(const w of rows){ const j=w.j, k=reduce?1:clamp(sp*1.7-j*.02), rise=k>=1?1:eob(k), amp=j?.13*Math.min(1,j/5):0;
+    for(let i=0;i<NP;i++){ const x=XS[i]; let y=SG.val(SG.shape(x))*rise;
+      if(j&&!reduce) y=y*(1+.05*Math.sin(t*.9+j*.55+x*.4))+amp*(.5+.5*Math.sin(x*2.3+t*1.3-j*.42))*(.6+.4*Math.sin(x*.7-t*.6+j*.3));
+      w.lp[i*3+1]=y; w.fp[i*6+1]=y; }
+    w.lg.attributes.position.needsUpdate=true; w.fg.attributes.position.needsUpdate=true;
+    if(j) w.lm.material.opacity=(.14+.6*Math.pow(1-j/NR,2))*(reduce?1:(.8+.2*Math.sin(t*1.6-j*.38))); }
+  const f0=rows[0].lp; ribs.forEach(b=>{ for(let i=0;i<NP;i++){ const y=f0[i*3+1]; b.p[i*6+1]=y+b.th*.5; b.p[i*6+4]=y-b.th*.5; } b.gm.attributes.position.needsUpdate=true; });
+  SG.dm.opacity=.85*clamp((sp-.8)/.2);
   SG.R.render(SG.S,cam);
   const W=SG.w, H=SG.h, v=SG.v, pr=(x,y,z)=>{ v.set(x,y,z).project(cam); return [(v.x+1)/2*W,(1-v.y)/2*H]; }, put=(e,p,tf,o)=>{ e.style.transform=`translate(${p[0].toFixed(1)}px,${p[1].toFixed(1)}px) ${tf}`; if(o!=null) e.style.opacity=o; };
-  const k0=clamp(sp*1.5), k1=clamp(sp*1.5-.08);
-  L.vu.firstChild.textContent=Math.round(50*(k0>=1?1:eob(k0))); L.vt.firstChild.textContent=Math.round(15*(k1>=1?1:eob(k1)));
-  put(L.vu,pr(-1.2,bars[0].h*(k0>=1?1:eob(k0))+.12,0),'translate(-50%,-100%)',k0>0?1:0); put(L.vt,pr(1.2,bars[1].h*(k1>=1?1:eob(k1))+.12,0),'translate(-50%,-100%)',k1>0?1:0);
-  put(L.nu,pr(-1.2,0,.75),'translate(-50%,0)'); put(L.nt,pr(1.2,0,.75),'translate(-50%,0)');
-  put(L.x,pr(.12,SG.val(32.5),0),'translate(0,-50%)',clamp((sp-.85)/.15).toFixed(3));
-  [20,40,60].forEach((p,i)=>put(L.a[i],pr(-2.4,SG.val(p),-.6),'translate(-100%,-50%)'));
+  const k0=clamp(sp*1.7), ru=k0>=1?1:eob(k0);
+  L.vu.firstChild.textContent=Math.round(50*ru); L.vt.firstChild.textContent=Math.round(15*ru);
+  put(L.vu,pr(SG.PU,SG.val(50)*ru+.18,0),'translate(-50%,-100%)',k0>0?1:0); put(L.vt,pr(SG.PT,SG.val(15)*ru+.18,0),'translate(-50%,-100%)',k0>0?1:0);
+  put(L.nu,pr(SG.PU,0,.7),'translate(-50%,0)'); put(L.nt,pr(SG.PT,0,.7),'translate(-50%,0)');
+  put(L.x,pr(.16,SG.val(50),.3),'translate(0,-50%)',(.0+clamp((sp-.8)/.2)).toFixed(3));
+  [0,20,40,60].forEach((p,i)=>put(L.a[i],pr(SG.X0-.1,SG.val(p),.25),'translate(-100%,-50%)'));
 }
 
 const links=$$('#dock a'), dock=$('#dock'), dockP=$('#dockp'), bub=$('#bub'), MBAR=$('#mbar'); let dockX=60, dockT=60;
