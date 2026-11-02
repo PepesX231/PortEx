@@ -35,29 +35,29 @@ html.pxl-on,html.pxl-on body{overflow:hidden!important}
   ' return d*(.62+.75*fbm(vec2(x*2.2,y*3.4-t*3.2)));}',
   'vec3 fcol(float d){vec3 c=mix(vec3(.16,.05,.55),vec3(.08,.32,1.),smoothstep(.05,.35,d));c=mix(c,vec3(.35,.82,1.),smoothstep(.3,.7,d));c=mix(c,vec3(.92,.98,1.),smoothstep(.68,1.05,d));return c*smoothstep(0.,.12,d)*(.55+d);}',
   'void main(){vec2 fc=gl_FragCoord.xy,uv=fc/R;float asp=R.x/R.y,hz=R.x>R.y?.36:.40;',
-  ' float zm=1.-.07*P+.14*X*X;vec2 p=vec2((uv.x-.5)*asp,uv.y-hz)/zm;float t=T,g=.12+.88*smoothstep(0.,1.,P),ex=smoothstep(0.,.25,X);',
+  ' float e=X*X*(3.-2.*X),zm=1.-.07*P-.07*e;vec2 p=vec2((uv.x-.5)*asp,uv.y-hz)/zm;float t=T,g=.12+.88*smoothstep(0.,1.,P),ex=smoothstep(0.,.55,X);',
   ' vec3 col=mix(vec3(.02,.018,.07),vec3(.06,.045,.17),smoothstep(-.05,.65,p.y));',
-  ' if(p.y>.08){float au=fbm(vec2(p.x*1.4+t*.025,p.y*.6-t*.04));col+=smoothstep(.12,.55,p.y)*smoothstep(.98,.45,p.y)*smoothstep(.42,.85,au)*mix(vec3(.1,.5,.6),vec3(.35,.2,.7),au)*.5;}',
-  ' vec2 sg=floor(fc/2.3);float sr=h21(sg);col+=step(.9955,sr)*(.5+.5*sin(t*1.7+sr*90.))*vec3(.75,.85,1.)*step(0.,p.y)*(1.-ex*.85);',
+  ' if(p.y>.08){float au=fbm(vec2(p.x*1.4+t*.025,p.y*.6-t*.04));col+=smoothstep(.12,.55,p.y)*smoothstep(.98,.45,p.y)*smoothstep(.42,.85,au)*mix(vec3(.1,.5,.6),vec3(.35,.2,.7),au)*(.5+e*.6);}',
+  ' vec2 sg=floor(fc/2.3);float sr=h21(sg);col+=step(.9955,sr)*(.5+.5*sin(t*1.7+sr*90.))*vec3(.75,.85,1.)*step(0.,p.y)*(1.-e*.35);',
   ' vec2 fp=p;float r0=length(fp-vec2(0.,.05));',
   ' if(p.y>=0.){float d=fire(fp,t,g)*(1.-ex*.92);col+=fcol(d)*1.25+vec3(.18,.36,1.)*exp(-length(vec2(fp.x*1.1,fp.y-.12*g))*(4.2-1.2*g))*(.35+.65*g)*.55;',
   '  for(int i=0;i<26;i++){float fi=float(i),Lf=1.4+h11(fi+3.)*1.6,tt=fract((t+h11(fi+11.)*Lf)/Lf);',
   '   vec2 sp=vec2((h11(fi)-.5)*.12*(.5+g)+sin(tt*5.+fi)*.035*tt,tt*(.18+.42*g)*(1.+h11(fi+5.)*.6));',
-  '   float dp=length((fp-sp)*R.y),a=(1.-tt)*smoothstep(0.,.08,tt)*(.4+g)*(1.-ex);col+=vec3(.55,.85,1.)*(exp(-dp*dp/3.)*1.3+exp(-dp/7.)*.12)*a;}}',
-  ' else{float dpt=-p.y,spd=1.+ex*6.;vec3 wa=mix(vec3(.025,.03,.11),vec3(.004,.006,.03),smoothstep(0.,.38,dpt));',
+  '   float dp=length((fp-sp)*R.y),a=(1.-tt)*smoothstep(0.,.08,tt)*(.4+g)*(1.-smoothstep(.5,1.,X));col+=vec3(.55,.85,1.)*(exp(-dp*dp/3.)*1.3+exp(-dp/7.)*.12)*a;}}',
+  ' else{float dpt=-p.y,spd=1.+e*.5;vec3 wa=mix(vec3(.025,.03,.11),vec3(.004,.006,.03),smoothstep(0.,.38,dpt));',
   '  if(abs(p.x)<.6&&dpt<.7){float rip=(vn(vec2(fc.x*.006,dpt*R.y*.07-t*1.1*spd))-.5)*.09*(.6+dpt*7.);float rd=fire(vec2(p.x+rip,dpt*1.55),t,g)*(1.-ex*.92);',
   '   float brk=.55+.45*vn(vec2(fc.x*.02,dpt*R.y*.25-t*2.*spd));wa+=fcol(rd)*.55*brk*exp(-dpt*3.2);}',
   '  wa+=vec3(.18,.36,1.)*exp(-length(vec2(p.x*1.6,dpt*3.))*3.5)*.22*(.35+g);',
   '  wa+=vec3(.7,.9,1.)*pow(vn(vec2(fc.x*.05,fc.y*.9-t*3.*spd)),12.)*exp(-abs(p.x)*6.)*exp(-dpt*2.)*1.6;',
-  '  wa+=vec3(.3,.45,.9)*smoothstep(.72,1.,vn(vec2(fc.x*.01+t*.1,dpt*R.y*.3)))*.05*exp(-dpt*3.);col=wa;}',
+  '  wa+=vec3(.3,.45,.9)*smoothstep(.72,1.,vn(vec2(fc.x*.01+t*.1,dpt*R.y*.3)))*.05*exp(-dpt*3.);',
+  '  if(X>0.){float gp=pow(vn(vec2(fc.x*.035,fc.y*.6-t*1.6)),5.);wa+=vec3(.55,.75,1.)*(gp*1.4+.12)*exp(-abs(p.x)*(7.-4.*e))*exp(-dpt*(3.4-1.8*e))*e;}col=wa;}',
   ' float Lh=mix(.04,.5*asp,max(P,ex)),ax=abs(p.x),py=abs(p.y)*R.y*zm,k=smoothstep(Lh,Lh*.25,ax);',
   ' col+=vec3(.82,.94,1.)*exp(-py/1.3)*k*(1.1+ex*1.1)+vec3(.42,.36,1.)*exp(-py/14.)*smoothstep(Lh*1.25,0.,ax)*.35*(1.+ex)+vec3(.3,.5,1.)*exp(-py/.7)*.06;',
-  ' vec2 hd=vec2((ax-Lh)*R.y*zm,py);col+=vec3(.6,.88,1.)*(exp(-dot(hd,hd)/392.)*.9+exp(-length(hd)/40.)*.25)*(1.-ex)*smoothstep(0.,.05,P);',
-  ' if(X>0.){vec2 c=p-vec2(0.,.06);float a=atan(c.y,c.x),r=length(c);',
-  '  for(int l=0;l<2;l++){float nL=l==0?90.:150.,u=(a/6.2831+.5)*nL,id=floor(u),sa=fract(u),hh=h11(id+float(l)*37.);',
-  '   float z=fract(hh*7.31+t*(.6+hh)*(.5+X*4.)),rr=.05+z*1.3,len=.01+X*X*(.15+.5*z);',
-  '   col+=vec3(.7,.85,1.)*smoothstep(rr-len,rr-len*.6,r)*smoothstep(rr,rr-.01,r)*exp(-pow((sa-.5)*6.2831/nL*r*R.y/1.1,2.))*smoothstep(.05,.4,X)*(.5+hh)*.85;}',
-  '  col+=vec3(.7,.86,1.)*exp(-r0*R.y/(24.+60.*ex))*ex*1.5;float rad=max(0.,(X-.6)*4.2);col=mix(col,vec3(.5,.68,1.),.85*smoothstep(rad,rad-.5,r)*smoothstep(.6,.72,X));}',
+  ' vec2 hd=vec2((ax-Lh)*R.y*zm,py);col+=vec3(.6,.88,1.)*(exp(-dot(hd,hd)/392.)*.9+exp(-length(hd)/40.)*.25)*(1.-ex)*smoothstep(0.,.05,P)*(1.-smoothstep(.9,1.,P));',
+  ' if(X>0.){vec2 oc=vec2(0.,mix(.03,.3,e));float od=length(p-oc);',
+  '  col+=vec3(.78,.9,1.)*(exp(-od*R.y/(9.+22.*e))*1.5+exp(-od*(6.-2.4*e))*.5*e)*smoothstep(0.,.18,X);',
+  '  col+=vec3(.22,.3,.78)*exp(-abs(p.y-.02)*(5.-2.*e))*e*.4;',
+  '  col=mix(col,vec3(.14,.12,.38),smoothstep(.72,1.,X)*.5);}',
   ' col*=1.-.35*smoothstep(.55,1.2,length((uv-.5)*vec2(asp,1.)));gl_FragColor=vec4(col,1.);}'].join('\n');
   if(gl){
     var vs='attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
@@ -77,17 +77,17 @@ html.pxl-on,html.pxl-on body{overflow:hidden!important}
   window.PXL={mark:mark,onDone:function(f){ S.done?f():S.cbs.push(f); },get done(){ return S.done; }};
   document.addEventListener('DOMContentLoaded',function(){ mark(.55); });
   if(document.fonts&&document.fonts.load){ Promise.all([document.fonts.load('800 1em Unbounded'),document.fonts.load('600 1em "Noto Sans Thai"')]).then(function(){ mark(.7); },function(){}); }
-  addEventListener('load',function(){ mark(.88); requestAnimationFrame(function(){ requestAnimationFrame(function(){ mark(1); }); }); });
+  addEventListener('load',function(){ S.loaded=true; mark(.88); requestAnimationFrame(function(){ requestAnimationFrame(function(){ mark(1); }); }); });
   setTimeout(function(){ mark(1); },12000);
-  function fire(){ if(S.fired) return; S.fired=true; S.done=true; de.classList.remove('pxl-on'); S.cbs.forEach(function(f){ try{f();}catch(e){} }); S.cbs=[]; L.style.transition='opacity .55s ease'; L.style.opacity='0'; L.style.pointerEvents='none';
-    setTimeout(function(){ try{ var x=gl&&gl.getExtension('WEBGL_lose_context'); x&&x.loseContext(); }catch(er){} L.remove(); },650); }
+  function fire(){ if(S.fired) return; S.fired=true; S.done=true; de.classList.remove('pxl-on'); S.cbs.forEach(function(f){ try{f();}catch(e){} }); S.cbs=[]; L.style.transition='opacity 1s cubic-bezier(.4,0,.2,1)'; L.style.opacity='0'; L.style.pointerEvents='none';
+    setTimeout(function(){ try{ var x=gl&&gl.getExtension('WEBGL_lose_context'); x&&x.loseContext(); }catch(er){} L.remove(); },1100); }
   (function loop(now){ if(!L.isConnected) return; var rdt=(now-S.last)/1000, dt=Math.min(.5,rdt); S.last=now;
-    if(gl&&now-S.t0>300&&!S.out){ fa+=rdt; fn++; if(fn>=8){ if(fa/fn>.034&&QS>.35){ QS*=.72; size(); } fa=0; fn=0; } }
+    if(gl&&S.loaded&&!S.out){ fa+=rdt; fn++; if(fn>=10){ if(fa/fn>.045&&QS>.62){ QS=Math.max(.6,QS*.8); size(); } fa=0; fn=0; } }
     var creep=Math.min(.14,(now-S.t0)/1000*.035), goal=Math.min(S.tgt<1?S.tgt+creep:1,S.tgt<1?.97:1);
     S.p+=(goal-S.p)*(1-Math.exp(-dt*(S.tgt>=1?7:2.4))); if(S.tgt>=1&&S.p>.985) S.p=1;
     N.textContent=Math.floor(S.p*100);
     if(!S.out&&S.p>=1&&now-S.t0>1400&&!window.PXL_HOLD){ S.out=now; L.classList.add('out'); if(RM) fire(); }
-    if(S.out){ S.X=Math.min(1,(now-S.out)/1500); if(S.X>=.8) fire(); }
+    if(S.out){ S.X=Math.min(1,(now-S.out)/2600); if(S.X>=.74) fire(); }
     if(window.PXL_HOLD&&typeof window.PXL_X==='number') S.X=window.PXL_X;
     if(gl&&!(S.fired&&RM)){ gl.uniform2f(U.R,cv.width,cv.height); gl.uniform1f(U.T,RM?2.:(now-S.t0)/1000); gl.uniform1f(U.P,S.p); gl.uniform1f(U.X,RM?0:S.X); gl.drawArrays(gl.TRIANGLES,0,3); }
     requestAnimationFrame(loop); })(performance.now());
